@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<!-- h:outputStylesheet name="index.css" library="css" /> -->
+	<title>Tela Principal</title>
+</h:head>
+<h:body>
+	<div class="menu-fixo">
+		<h:form>
+			<p:growl id="messages" />
+			<p:menubar hideDelay="1000">
+				<f:facet name="start">
+					<p:graphicImage name="images/primefaces-logo.svg"
+						library="showcase" />
+				</f:facet>
+				<div class="divMenuItem">
+					<p:submenu label="Novo" icon="pi pi-file">
+						<p:menuitem value="Renda" icon="pi pi-plus" />
+						<p:menuitem value="Despesa" icon="pi pi-plus" />
+						<p:menuitem value="Cartão" icon="pi pi-plus" />
+						<p:menuitem value="Conta" icon="pi pi-plus" />
+						<p:menuitem value="Metas" icon="pi pi-plus" />
+						<p:menuitem value="Limites de Gasto" icon="pi pi-plus" />
+					</p:submenu>
+					<p:submenu label="Relatórios" icon="pi pi-pencil">
+						<p:menuitem value="Entradas X Saídas" icon="pi pi-align-left" />
+						<p:menuitem value="Próximas Despesas" icon="pi pi-align-right" />
+						<p:menuitem value="Despesas por categoria"
+							icon="pi pi-align-center" />
+					</p:submenu>
+				</div>
+			</p:menubar>
+		</h:form>
+	</div>
+
+	<!-- Conteúdo principal -->
+	<div class="conteudo-principal">
+		<h:form>
+			<!-- Saudação e Resumo Mensal -->
+			<p:panelGrid columns="2" style="width: 100%; margin-bottom: 20px;"
+				columnClasses="ui-g-12, ui-g-12">
+				<p:panel header="Bom dia, João!"
+					style="text-align: left; padding: 10px;">
+					<h:outputText value="Receita Mensal" />
+					<h:outputText value="R$ 0,00" style="color: green; display: block;" />
+					<h:outputText value="Despesa Mensal" />
+					<h:outputText value="R$ 0,00" style="color: red; display: block;" />
+				</p:panel>
+
+				<p:panel header="Acesso Rápido"
+					style="text-align: center; padding: 10px;">
+					<p:commandButton value="DESPESA" icon="pi pi-minus"
+						styleClass="ui-button-danger" onclick="PF('dlgCadastroDespesa').show();"/>
+					<p:dialog widgetVar="dlgCadastroDespesa" header="Cadastro Despesa" modal="true" resizable="false">
+						<h:form>
+							<ui:include src="cadastroDespesa.xhtml"/>
+						</h:form>
+					</p:dialog>	
+						
+					<p:commandButton value="RECEITA" icon="pi pi-plus"
+						styleClass="ui-button-success"
+						onclick="PF('dlgCadastroReceita').show();" />
+					<p:dialog widgetVar="dlgCadastroReceita" header="Cadastro de Receita"
+						modal="true" resizable="false">
+						<h:form>
+							<ui:include src="cadastroReceita.xhtml" />
+						</h:form>
+					</p:dialog>
+					
+					<p:commandButton value="TRANSFERÊNCIA" icon="pi pi-exchange" />
+				</p:panel>
+			</p:panelGrid>
+
+			<!-- Informações Financeiras -->
+			<p:panelGrid columns="2" style="width: 100%;"
+				columnClasses="ui-g-6, ui-g-6">
+				<p:panel header="Saldo Geral">
+					<h:outputText value="R$ 0,00"
+						style="font-size: 20px; font-weight: bold; color: green;" />
+					<h:outputText value="Minhas Contas"
+						style="display: block; margin-top: 10px;" />
+					<p:commandButton value="Gerenciar Contas" />
+				</p:panel>
+
+				<p:panel header="Todas as Faturas">
+					<h:outputText value="R$ 0,00"
+						style="font-size: 20px; font-weight: bold; color: green;" />
+					<h:outputText value="Meus Cartões"
+						style="display: block; margin-top: 10px;" />
+					<p:commandButton value="Gerenciar Cartões" />
+				</p:panel>
+			</p:panelGrid>
+
+			<!-- Contas a Pagar e Gastos Mensais -->
+			<p:panelGrid columns="2" style="width: 100%; margin-top: 20px;"
+				columnClasses="ui-g-6, ui-g-6">
+				<p:panel header="Contas a Pagar">
+					<h:outputText value="No momento você não possui contas a pagar." />
+				</p:panel>
+
+				<p:panel header="Maiores Gastos do Mês Atual">
+					<h:outputText value="Sem gastos no período." />
+				</p:panel>
+			</p:panelGrid>
+		</h:form>
+	</div>
+</h:body>
+</html>

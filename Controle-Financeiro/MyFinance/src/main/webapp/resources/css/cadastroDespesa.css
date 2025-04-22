@@ -1,0 +1,85 @@
+/* Estilização geral */
+.ui-fluid {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Painel de cadastro */
+.painel-cadastro {
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Div para agrupar campos */
+.campo-container {
+    margin-bottom: 15px;
+}
+
+.campo-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.campo-container input,
+.campo-container select,
+.campo-container textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.campo-container textarea {
+    resize: vertical;
+}
+
+/* Mensagens de erro */
+.mensagem-erro {
+    color: red;
+    font-size: 12px;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Container para os botões */
+.botoes-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+/* Botões */
+.btn-salvar {
+    background-color: #007ad9;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.btn-salvar:hover {
+    background-color: #005bb5;
+}
+
+.btn-limpar {
+    background-color: #b3b3b3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-limpar:hover {
+    background-color: #999999;
+}

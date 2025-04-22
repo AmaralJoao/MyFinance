@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <h:outputStylesheet library="css" name="index.css" />
+    <title>Tela Principal</title>
+</h:head>
+
+<h:body>
+    <!-- Menu fixo -->
+    <div class="menu-fixo">
+        <h:form>
+            <p:growl id="messages" />
+            <p:menubar hideDelay="1000">
+                <f:facet name="start">
+                    <p:graphicImage name="images/primefaces-logo.svg" library="showcase" />
+                </f:facet>
+                <f:facet name="options">
+                    <p:submenu label="Novo" icon="pi pi-file">
+                        <p:menuitem value="Renda" icon="pi pi-plus" />
+                        <p:menuitem value="Despesa" icon="pi pi-plus" />
+                        <p:menuitem value="Cartão" icon="pi pi-plus" />
+                        <p:menuitem value="Conta" icon="pi pi-plus" />
+                        <p:menuitem value="Metas" icon="pi pi-plus" />
+                        <p:menuitem value="Limites de Gasto" icon="pi pi-plus" />
+                    </p:submenu>
+                    <p:submenu label="Relatórios" icon="pi pi-chart-bar">
+                        <p:menuitem value="Entradas X Saídas" icon="pi pi-align-left" />
+                        <p:menuitem value="Próximas Despesas" icon="pi pi-calendar" />
+                        <p:menuitem value="Despesas por categoria" icon="pi pi-list" />
+                    </p:submenu>
+                </f:facet>
+            </p:menubar>
+        </h:form>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div class="conteudo-principal">
+        <h:form>
+            <p:panelGrid columns="2" styleClass="painel-dados">
+                <p:panel header="Bom dia, #{sessionScope.nomeDoUsuario}" styleClass="painel-informacao">
+                    <h:outputText value="Receita Mensal" />
+                    <h:outputText value="#{indexBean.totalReceitas}" styleClass="valor-positivo" />
+                    <h:outputText value="Despesa Mensal" />
+                    <h:outputText value="#{indexBean.totalDespesas}" styleClass="valor-negativo" />
+                </p:panel>
+
+                <p:panel header="Acesso Rápido" styleClass="painel-acesso">
+                    <!-- Botão para abrir o diálogo de Despesa -->
+                    <p:commandButton value="DESPESA" icon="pi pi-minus"
+                                     styleClass="ui-button-danger"
+                                     oncomplete="PF('dlgCadastroDespesa').show();" />
+
+                    <!-- Diálogo de Cadastro de Despesa -->
+                    <p:dialog widgetVar="dlgCadastroDespesa" header="Cadastro Despesa"
+                              modal="true" resizable="false" maximizable="true" closable="true"
+                              responsive="true" fitViewport="true" appendTo="@(body)"
+                              style="min-width: 50vw; max-width: 90vw; min-height: 50vh; max-height: 90vh;">
+                        <ui:include src="cadastroDespesa.xhtml" />
+                    </p:dialog>
+
+                    <!-- Botão para abrir o diálogo de Receita -->
+                    <p:commandButton value="RECEITA" icon="pi pi-plus"
+                                     styleClass="ui-button-success"
+                                     oncomplete="PF('dlgCadastroReceita').show();" />
+
+                    <!-- Diálogo de Cadastro de Receita -->
+                    <p:dialog widgetVar="dlgCadastroReceita" header="Cadastro de Receita"
+                              modal="true" resizable="false" maximizable="true" closable="true"
+                              responsive="true" fitViewport="true" appendTo="@(body)"
+                              style="min-width: 50vw; max-width: 90vw; min-height: 50vh; max-height: 90vh;">
+                        <ui:include src="cadastroReceita.xhtml" />
+                    </p:dialog>
+
+                    <p:commandButton value="TRANSFERÊNCIA" icon="pi pi-exchange" />
+                </p:panel>
+            </p:panelGrid>
+
+            <!-- Informações Financeiras -->
+            <p:panelGrid columns="2" styleClass="painel-dados">
+                <p:panel header="Saldo Geral">
+                    <h:outputText value="R$ 0,00" styleClass="valor-positivo" />
+                    <h:outputText value="Minhas Contas" styleClass="descricao-conta" />
+                    <p:commandButton value="Gerenciar Contas" />
+                </p:panel>
+
+                <p:panel header="Todas as Faturas">
+                    <h:outputText value="R$ 0,00" styleClass="valor-positivo" />
+                    <h:outputText value="Meus Cartões" styleClass="descricao-conta" />
+                    <p:commandButton value="Gerenciar Cartões" />
+                </p:panel>
+            </p:panelGrid>
+
+            <!-- Contas a Pagar e Gastos Mensais -->
+            <p:panelGrid columns="2" styleClass="painel-dados">
+                <p:panel header="Contas a Pagar">
+                    <h:outputText value="No momento você não possui contas a pagar." />
+                </p:panel>
+
+                <p:panel header="Maiores Gastos do Mês Atual">
+                    <h:outputText value="Sem gastos no período." />
+                </p:panel>
+            </p:panelGrid>
+        </h:form>
+    </div>
+</h:body>
+</html>

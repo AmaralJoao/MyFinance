@@ -1,0 +1,218 @@
+/* Base Styles and Variables */
+:root {
+  --primary-color: #2563eb;
+  --primary-hover: #1d4ed8;
+  --background-color: #f0f2f5;
+  --panel-background: #ffffff;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --border-color: #e2e8f0;
+  --error-color: #ef4444;
+  --input-focus: #3b82f6;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  background-image: linear-gradient(135deg, #f0f2f5 0%, #e2e8f0 100%);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+/* Login Container */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Login Panel */
+.painel-login {
+  width: 100%;
+  max-width: 400px;
+  background: var(--panel-background) !important;
+  border-radius: 1rem !important;
+  box-shadow: var(--shadow-lg) !important;
+  border: none !important;
+  animation: slideUp 0.5s ease-out;
+}
+
+.painel-login .ui-panel-content {
+  padding: 2rem !important;
+}
+
+/* Login Header */
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-header h2 {
+  margin: 1rem 0 0.5rem;
+  color: var(--text-primary);
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.login-header p {
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: 1rem;
+}
+
+.login-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  padding: 0.5rem;
+  background: var(--background-color);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Form Fields */
+.campo-container {
+  margin-bottom: 1.5rem;
+}
+
+.ui-outputlabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.icon-input {
+  position: absolute;
+  left: 1rem;
+  color: var(--text-secondary);
+  z-index: 1;
+}
+
+.input-texto,
+.ui-password input {
+  width: 100% !important;
+  padding: 0.75rem 1rem 0.75rem 2.5rem !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 0.5rem !important;
+  font-size: 1rem !important;
+  color: var(--text-primary) !important;
+  background: var(--panel-background) !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.input-texto:hover,
+.ui-password input:hover {
+  border-color: var(--primary-color) !important;
+}
+
+.input-texto:focus,
+.ui-password input:focus {
+  outline: none !important;
+  border-color: var(--input-focus) !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+}
+
+/* Error Messages */
+.mensagem-erro {
+  color: var(--error-color) !important;
+  font-size: 0.75rem !important;
+  margin-top: 0.5rem !important;
+  display: block !important;
+}
+
+/* Buttons */
+.botoes-container {
+  margin-top: 2rem;
+}
+
+.btn-login {
+  width: 100% !important;
+  padding: 0.75rem !important;
+  background-color: var(--primary-color) !important;
+  border: none !important;
+  border-radius: 0.5rem !important;
+  color: white !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.btn-login:hover {
+  background-color: var(--primary-hover) !important;
+  transform: translateY(-1px);
+}
+
+.btn-login:active {
+  transform: translateY(0);
+}
+
+/* Animations */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 1rem;
+  }
+  
+  .painel-login {
+    max-width: 100%;
+  }
+  
+  .painel-login .ui-panel-content {
+    padding: 1.5rem !important;
+  }
+  
+  .login-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .login-icon {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* PrimeFaces Overrides */
+.ui-message-error {
+  background: transparent !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.ui-message-error-icon {
+  display: none !important;
+}
+
+/* Focus Styles for Accessibility */
+*:focus-visible {
+  outline: 2px solid var(--primary-color) !important;
+  outline-offset: 2px !important;
+}

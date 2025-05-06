@@ -17,14 +17,14 @@ public class UsuarioService {
 
     public UsuarioResponseDto cadastrar(UsuarioRequestDto usuarioRequestDto){
 
-        usuarioRepository.localizarPorEmail(usuarioRequestDto.getEmail()).ifPresent(u ->{
+        usuarioRepository.findByEmail(usuarioRequestDto.getEmail()).ifPresent(u ->{
             throw new EmailJaExistenteException("Email já cadastrado");
         });
 
         String senhaCriptografada = passwordEncoderor.encode(usuarioRequestDto.getSenha());
 
         UsuarioModel usuario = new UsuarioModel();
-        usuario.setNomeDoUsuario(usuarioRequestDto.getNomeDeUsuario());
+        usuario.setNomeDoUsuario(usuarioRequestDto.getNomeDoUsuario());
         usuario.setUsuario(usuarioRequestDto.getUsuario());
         usuario.setEmail(usuarioRequestDto.getEmail());
         usuario.setSenha(senhaCriptografada);

@@ -1,14 +1,16 @@
 package com.br.MyFinance.Dto.Request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 
 public class UsuarioRequestDto {
 
     @NotBlank(message = "Nome é obrigatorio!")
-    private String nomeDeUsuario;
+    private String nomeDoUsuario;
 
     @NotBlank(message = "nome de usuario é obrigatorio!")
     private String usuario;
@@ -20,15 +22,16 @@ public class UsuarioRequestDto {
     @NotBlank(message = "Senha deve conter 8 ou mais caracteres!")
     private String senha;
 
-    @NotBlank(message = "Data de nascimento é obrigatorio")
+    @NotNull(message = "Data de nascimento é obrigatorio")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dataDeNascimento;
 
-    public String getNomeDeUsuario() {
-        return nomeDeUsuario;
+    public String getNomeDoUsuario() {
+        return nomeDoUsuario;
     }
 
-    public void setNomeDeUsuario(String nomeDeUsuario) {
-        this.nomeDeUsuario = nomeDeUsuario;
+    public void setNomeDoUsuario(String nomeDeUsuario) {
+        this.nomeDoUsuario = nomeDeUsuario;
     }
 
     public String getUsuario() {

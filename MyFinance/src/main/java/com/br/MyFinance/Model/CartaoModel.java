@@ -4,11 +4,11 @@ import jakarta.persistence.*;
 
 import java.util.Objects;
 
-@Entity
-@Table(name = "cartao")
+/*@Entity
+@Table(name = "cartao")*/
 public class CartaoModel {
 
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
@@ -103,5 +103,5 @@ public class CartaoModel {
                 ", nome='" + nome + '\'' +
                 ", tipoCartao=" + tipoCartao +
                 '}';
-    }
+    }*/
 }

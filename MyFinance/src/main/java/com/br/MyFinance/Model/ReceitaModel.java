@@ -5,11 +5,11 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
-
+/*
 @Entity
-@Table(name = "receita")
+@Table(name = "receita")*/
 public class ReceitaModel {
-
+/*
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cdReceita")
@@ -134,5 +134,5 @@ public class ReceitaModel {
                 ", valor=" + valor +
                 ", data=" + data +
                 '}';
-    }
+    }*/
 }

@@ -6,10 +6,10 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
-@Entity
-@Table(name = "despesa")
+/*@Entity
+@Table(name = "despesa")*/
 public class DespesaModel {
-
+/*
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -126,5 +126,5 @@ public class DespesaModel {
                 ", valor=" + valor +
                 ", data=" + data +
                 '}';
-    }
+    }*/
 }

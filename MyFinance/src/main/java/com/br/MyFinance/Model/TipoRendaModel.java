@@ -3,11 +3,11 @@ package com.br.MyFinance.Model;
 import jakarta.persistence.*;
 
 import java.util.Objects;
-
+/*
 @Entity
-@Table(name = "tipoRenda")
+@Table(name = "tipoRenda")*/
 public class TipoRendaModel {
-
+/*
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cdTipoRenda")
@@ -69,5 +69,5 @@ public class TipoRendaModel {
                 ", descricao='" + descricao + '\'' +
                 ", vigente=" + vigente +
                 '}';
-    }
+    }*/
 }

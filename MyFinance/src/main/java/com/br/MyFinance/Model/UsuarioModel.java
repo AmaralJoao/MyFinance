@@ -13,14 +13,36 @@ public class UsuarioModel {
     @Column(name = "cdUsuario")
     private Long cdUsuario;
 
+    @Column(name = "nmUsuario", nullable = false)
+    private String nomeDoUsuario;
+
+    @Column(name = "email", nullable = false)
+    private String email;
+
     @Column(name = "usuario", nullable = false, length = 50)
     private String usuario;
 
     @Column(name = "senha", nullable = false, length = 100)
     private String senha;
 
-    @Column(name = "dataDeNascimento", nullable = false)
+    @Column(name = "dtNascimento", nullable = false)
     private Date dataDeNascimento;
+
+    @Column(name = "dtCriacao", nullable = false)
+    private Date dataCriacao;
+
+    public UsuarioModel() {
+    }
+
+    public UsuarioModel(Long cdUsuario, String nomeDoUsuario, String email, String usuario, String senha, Date dataDeNascimento, Date dataCriacao) {
+        this.cdUsuario = cdUsuario;
+        this.nomeDoUsuario = nomeDoUsuario;
+        this.email = email;
+        this.usuario = usuario;
+        this.senha = senha;
+        this.dataDeNascimento = dataDeNascimento;
+        this.dataCriacao = new Date();
+    }
 
     public Date getDataDeNascimento() {
         return dataDeNascimento;
@@ -53,4 +75,16 @@ public class UsuarioModel {
     public void setCdUsuario(Long cdUsuario) {
         this.cdUsuario = cdUsuario;
     }
+
+    public Date getDataCriacao() {return dataCriacao;}
+
+    public void setDataCriacao(Date dataCriacao) {this.dataCriacao = dataCriacao;}
+
+    public String getNomeDoUsuario() {return nomeDoUsuario;}
+
+    public void setNomeDoUsuario(String nomeDoUsuario) {this.nomeDoUsuario = nomeDoUsuario;}
+
+    public String getEmail() {return email;}
+
+    public void setEmail(String email) {this.email = email;}
 }

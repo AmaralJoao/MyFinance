@@ -1,7 +1,9 @@
 package com.br.MyFinance.Model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -26,29 +28,29 @@ public class UsuarioModel {
     private String senha;
 
     @Column(name = "dtNascimento", nullable = false)
-    private Date dataDeNascimento;
+    private LocalDate dataDeNascimento;
 
+    @CreationTimestamp
     @Column(name = "dtCriacao", nullable = false)
-    private Date dataCriacao;
+    private LocalDate dataCriacao;
 
     public UsuarioModel() {
     }
 
-    public UsuarioModel(Long cdUsuario, String nomeDoUsuario, String email, String usuario, String senha, Date dataDeNascimento, Date dataCriacao) {
+    public UsuarioModel(Long cdUsuario, String nomeDoUsuario, String email, String usuario, String senha, LocalDate dataDeNascimento) {
         this.cdUsuario = cdUsuario;
         this.nomeDoUsuario = nomeDoUsuario;
         this.email = email;
         this.usuario = usuario;
         this.senha = senha;
         this.dataDeNascimento = dataDeNascimento;
-        this.dataCriacao = new Date();
     }
 
-    public Date getDataDeNascimento() {
+    public LocalDate getDataDeNascimento() {
         return dataDeNascimento;
     }
 
-    public void setDataDeNascimento(Date dataDeNascimento) {
+    public void setDataDeNascimento(LocalDate dataDeNascimento) {
         this.dataDeNascimento = dataDeNascimento;
     }
 
@@ -76,9 +78,9 @@ public class UsuarioModel {
         this.cdUsuario = cdUsuario;
     }
 
-    public Date getDataCriacao() {return dataCriacao;}
+    public LocalDate getDataCriacao() {return dataCriacao;}
 
-    public void setDataCriacao(Date dataCriacao) {this.dataCriacao = dataCriacao;}
+    public void setDataCriacao(LocalDate dataCriacao) {this.dataCriacao = dataCriacao;}
 
     public String getNomeDoUsuario() {return nomeDoUsuario;}
 

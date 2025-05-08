@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class UsuarioRequestDto {
@@ -24,7 +25,7 @@ public class UsuarioRequestDto {
 
     @NotNull(message = "Data de nascimento é obrigatorio")
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date dataDeNascimento;
+    private LocalDate dataDeNascimento;
 
     public String getNomeDoUsuario() {
         return nomeDoUsuario;
@@ -58,11 +59,11 @@ public class UsuarioRequestDto {
         this.email = email;
     }
 
-    public Date getDataDeNascimento() {
+    public LocalDate getDataDeNascimento() {
         return dataDeNascimento;
     }
 
-    public void setDataDeNascimento(Date dataDeNascimento) {
+    public void setDataDeNascimento(LocalDate dataDeNascimento) {
         this.dataDeNascimento = dataDeNascimento;
     }
 }

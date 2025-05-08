@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class UsuarioService {
 
+    @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
     private PasswordEncoder passwordEncoderor;
 
     public UsuarioResponseDto cadastrar(UsuarioRequestDto usuarioRequestDto){
@@ -33,5 +35,10 @@ public class UsuarioService {
         usuarioRepository.save(usuario);
 
         return null;
+    }
+
+    public UsuarioResponseDto logar(UsuarioRequestDto usuarioRequestDto) {
+
+        usuarioRepository.findByEmail(usuarioRequestDto.getEmail()).i
     }
 }

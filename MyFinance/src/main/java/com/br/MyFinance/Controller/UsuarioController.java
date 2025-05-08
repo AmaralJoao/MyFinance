@@ -6,10 +6,7 @@ import com.br.MyFinance.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/api/usuario")
@@ -24,5 +21,12 @@ public class UsuarioController {
         UsuarioResponseDto usuarioResponse = usuarioService.cadastrar(usuarioResquest);
 
         return ResponseEntity.status(201).body(usuarioResponse);
+    }
+
+    @GetMapping(value = "/logar")
+    public ResponseEntity<UsuarioResponseDto> logar(@RequestBody @Validated UsuarioRequestDto usuarioRequestDto){
+
+        UsuarioResponseDto usuarioResponseDto = usuarioService.logar(usuarioRequestDto);
+        return ResponseEntity.status(201).body(usuarioResponseDto);
     }
 }

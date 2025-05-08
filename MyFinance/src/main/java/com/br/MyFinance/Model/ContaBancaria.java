@@ -3,11 +3,11 @@ package com.br.MyFinance.Model;
 import jakarta.persistence.*;
 
 import java.util.Objects;
-/*
+
 @Entity
-@Table(name = "contaBancaria")*/
+@Table(name = "contaBancaria")
 public class ContaBancaria {
-/*
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cdContaBancaria")
@@ -95,5 +95,5 @@ public class ContaBancaria {
                 ", nome='" + nome + '\'' +
                 ", tipoConta=" + tipoConta +
                 '}';
-    }*/
+    }
 }

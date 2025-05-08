@@ -39,6 +39,8 @@ public class UsuarioService {
 
     public UsuarioResponseDto logar(UsuarioRequestDto usuarioRequestDto) {
 
-        usuarioRepository.findByEmail(usuarioRequestDto.getEmail()).i
+        if (usuarioRepository.findByEmail(usuarioRequestDto.getEmail())){
+
+        }
     }
 }

@@ -4,11 +4,11 @@ import jakarta.persistence.*;
 
 import java.util.Objects;
 
-/*@Entity
-@Table(name = "banco")*/
+@Entity
+@Table(name = "banco")
 public class BancoModel {
 
-   /* @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigoBanco")
     private Long id;
@@ -56,5 +56,5 @@ public class BancoModel {
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 '}';
-    }*/
+    }
 }

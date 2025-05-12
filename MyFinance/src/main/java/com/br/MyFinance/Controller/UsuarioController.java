@@ -23,10 +23,9 @@ public class UsuarioController {
         return ResponseEntity.status(201).body(usuarioResponse);
     }
 
-    @GetMapping(value = "/logar")
-    public ResponseEntity<UsuarioResponseDto> logar(@RequestBody @Validated UsuarioRequestDto usuarioRequestDto){
-
-        UsuarioResponseDto usuarioResponseDto = usuarioService.logar(usuarioRequestDto);
-        return ResponseEntity.status(201).body(usuarioResponseDto);
+    @PostMapping("/logar")
+    public ResponseEntity<UsuarioResponseDto> logar(@RequestBody @Validated UsuarioRequestDto usuarioRequestDto) {
+        UsuarioResponseDto usuarioLogado = usuarioService.logar(usuarioRequestDto);
+        return ResponseEntity.ok(usuarioLogado);
     }
 }

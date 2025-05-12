@@ -5,6 +5,14 @@ public class UsuarioResponseDto {
     private String usuarioId;
     private String usuario;
     private String email;
+    private String token;
+
+    public UsuarioResponseDto(String usuarioId, String usuario, String email, String token) {
+        this.usuarioId = usuarioId;
+        this.usuario = usuario;
+        this.email = email;
+        this.token = token;
+    }
 
     public String getUsuarioId() {
         return usuarioId;

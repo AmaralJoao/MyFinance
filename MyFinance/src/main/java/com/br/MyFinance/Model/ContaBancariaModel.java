@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "contaBancaria")
-public class ContaBancaria {
+public class ContaBancariaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,16 +27,16 @@ public class ContaBancaria {
     @JoinColumn(name = "cdBanco")
     private BancoModel banco;
 
-    public ContaBancaria() {
+    public ContaBancariaModel() {
     }
 
-    public ContaBancaria(String nome, Integer tipoConta, UsuarioModel usuario) {
+    public ContaBancariaModel(String nome, Integer tipoConta, UsuarioModel usuario) {
         this.nome = Objects.requireNonNull(nome, "Nome da conta não pode ser nulo");
         this.tipoConta = Objects.requireNonNull(tipoConta, "Tipo da conta não pode ser nulo");
         this.usuario = Objects.requireNonNull(usuario, "Usuário não pode ser nulo");
     }
 
-    public ContaBancaria(String nome, Integer tipoConta, UsuarioModel usuario, BancoModel banco) {
+    public ContaBancariaModel(String nome, Integer tipoConta, UsuarioModel usuario, BancoModel banco) {
         this(nome, tipoConta, usuario);
         this.banco = banco;
     }
@@ -75,11 +75,15 @@ public class ContaBancaria {
         this.banco = banco;
     }
 
+    public void setId(Long id) {this.id = id;}
+
+    public void setUsuario(UsuarioModel usuario) {this.usuario = usuario;}
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ContaBancaria that = (ContaBancaria) o;
+        ContaBancariaModel that = (ContaBancariaModel) o;
         return Objects.equals(id, that.id);
     }
 

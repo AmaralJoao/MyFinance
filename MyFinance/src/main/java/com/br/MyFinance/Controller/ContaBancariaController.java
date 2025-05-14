@@ -2,13 +2,16 @@ package com.br.MyFinance.Controller;
 
 import com.br.MyFinance.Dto.Request.ContaBancariaRequestDto;
 import com.br.MyFinance.Dto.Response.ContaBancariaResponseDto;
+import com.br.MyFinance.Model.ContaBancariaModel;
 import com.br.MyFinance.Service.ContaBancariaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -18,17 +21,33 @@ public class ContaBancariaController {
     @Autowired
     private ContaBancariaService contaBancariaService;
 
-    @PostMapping("/criarCOnta")
-    public void criarContaBancaria(@RequestBody @Valid ContaBancariaRequestDto contaBancariaRequestDto){
+    @PostMapping("/salvarconta")
+    public ResponseEntity<Void> salvarConta(@RequestBody @Valid ContaBancariaRequestDto contaBancariaRequestDto){
+        ContaBancariaModel contaSalva = contaBancariaService.criarContaBancaria(contaBancariaRequestDto);
 
-        contaBancariaService.criarContaBancaria(contaBancariaRequestDto);
+        if (contaBancariaRequestDto.isEdicao()){
+            return ResponseEntity.ok().build();
+        }else {
+            return ResponseEntity.created(URI.create("/api/contaBancaria/" + contaSalva.getId())).build();
+        }
+    }
+
+    @PutMapping("/{(id)}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Void> atualizarCOntas(@PathVariable Long id, @RequestBody @Valid ContaBancariaRequestDto contaBancariaRequestDto) throws IllegalAccessException {
+        if (!id.equals(contaBancariaRequestDto.getCdContaBancaria())){
+            throw new IllegalAccessException("ID do path não corresponde ao ID do DTO");
+        }
+
+        contaBancariaService.editarContaBancaria(contaBancariaRequestDto);
+        return ResponseEntity.ok().build();
     }
 
 
     @GetMapping("/listar")
-    public ResponseEntity<List<ContaBancariaResponseDto>> listarContasBancarias(@PathVariable long cdUsuario){
+    public ResponseEntity<List<ContaBancariaResponseDto>> listarContasBancariasPorUsuario(@PathVariable long cdUsuario){
 
-        List<ContaBancariaResponseDto> contaBancaria = contaBancariaService.listarContasDoPorUsuario(cdUsuario);
+        List<ContaBancariaResponseDto> contaBancaria = contaBancariaService.listarContasDoUsuario(cdUsuario);
 
         return ResponseEntity.ok(contaBancaria);
     }

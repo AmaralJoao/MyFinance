@@ -1,9 +1,6 @@
 package com.br.MyFinance.Dto.Response;
 
-import com.br.MyFinance.Model.BancoModel;
-import com.br.MyFinance.Model.ContaBancaria;
-import com.br.MyFinance.Model.UsuarioModel;
-import jakarta.persistence.*;
+import com.br.MyFinance.Model.ContaBancariaModel;
 
 public class ContaBancariaResponseDto {
 
@@ -14,7 +11,7 @@ public class ContaBancariaResponseDto {
 
     private long cdBanco;
 
-    public ContaBancariaResponseDto(ContaBancaria contaBancaria) {
+    public ContaBancariaResponseDto(ContaBancariaModel contaBancaria) {
 
         this.nomeDaConta = contaBancaria.getNome();
         this.tipoConta = contaBancaria.getTipoConta();

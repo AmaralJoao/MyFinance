@@ -1,6 +1,7 @@
 package com.br.MyFinance.Dto.Response;
 
 import com.br.MyFinance.Model.ContaBancariaModel;
+import com.br.MyFinance.Model.ReceitaModel;
 
 public class ContaBancariaResponseDto {
 
@@ -21,6 +22,7 @@ public class ContaBancariaResponseDto {
 
     public ContaBancariaResponseDto() {
     }
+
 
     public String getNomeDaConta() {
         return nomeDaConta;

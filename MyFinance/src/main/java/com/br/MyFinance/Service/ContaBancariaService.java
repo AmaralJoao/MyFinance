@@ -57,29 +57,30 @@ public class ContaBancariaService {
     }
 
 
+    @Transactional
     public void editarContaBancaria(@Valid ContaBancariaRequestDto contaBancariaRequestDto) {
-
         ContaBancariaModel contaExistente = contaBancariaRepository.findById(contaBancariaRequestDto.getCdContaBancaria())
-                .orElseThrow(() -> new EntityNotFoundException("Conta bancária não encontrada com ID: " + contaBancariaRequestDto.getCdContaBancaria()));
+                .orElseThrow(() -> new EntityNotFoundException("Conta bancária não encontrada"));
 
-        // Valida usuário
-        UsuarioModel usuario = usuarioRepository.findById(contaBancariaRequestDto.getCdUsuario())
-                .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado com ID: " + contaBancariaRequestDto.getCdUsuario()));
+        UsuarioModel usuario = validarEObterUsuario(contaBancariaRequestDto.getCdUsuario());
+        BancoModel banco = obterBancoSeExistir(contaBancariaRequestDto.getCdBanco());
 
-        // Banco é opcional
-        BancoModel banco = null;
-        if (contaBancariaRequestDto.getCdBanco() != null) {
-            banco = bancoRepository.findById(contaBancariaRequestDto.getCdBanco())
-                    .orElseThrow(() -> new IllegalArgumentException("Banco não encontrado com ID: " + contaBancariaRequestDto.getCdBanco()));
+        contaExistente.atualizarDados(contaBancariaRequestDto.getNome(),
+                contaBancariaRequestDto.getTipoConta(),
+                usuario,
+                banco);
+    }
+
+    private UsuarioModel validarEObterUsuario(Long usuarioId) {
+        return usuarioRepository.findById(usuarioId)
+                .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
+    }
+
+    private BancoModel obterBancoSeExistir(Long bancoId) {
+        if (bancoId == null) {
+            return null;
         }
-
-        // Atualiza os campos da conta existente
-        contaExistente.setNome(contaBancariaRequestDto.getNome());
-        contaExistente.setTipoConta(contaBancariaRequestDto.getTipoConta());
-        contaExistente.setUsuario(usuario);
-        contaExistente.setBanco(banco);
-
-        contaBancariaRepository.save(contaExistente);
-
+        return bancoRepository.findById(bancoId)
+                .orElseThrow(() -> new IllegalArgumentException("Banco não encontrado"));
     }
 }

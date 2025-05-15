@@ -41,6 +41,13 @@ public class ContaBancariaModel {
         this.banco = banco;
     }
 
+    public void atualizarDados(String nome, Integer tipoConta, UsuarioModel usuario, BancoModel banco) {
+        this.nome = nome;
+        this.tipoConta = tipoConta;
+        this.usuario = usuario;
+        this.banco = banco;
+    }
+
     // Getters
     public Long getId() {
         return id;

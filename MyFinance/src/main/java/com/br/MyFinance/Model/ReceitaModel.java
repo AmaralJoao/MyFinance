@@ -1,15 +1,17 @@
 package com.br.MyFinance.Model;
 
+import com.br.MyFinance.Enum.TipoDespesaEnum;
+import com.br.MyFinance.Enum.TipoReceitaEnum;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
-/*
+
 @Entity
-@Table(name = "receita")*/
+@Table(name = "receita")
 public class ReceitaModel {
-/*
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cdReceita")
@@ -17,11 +19,10 @@ public class ReceitaModel {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cdContaBancaria", nullable = false)
-    private ContaBancaria contaBancaria;
+    private ContaBancariaModel contaBancaria;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cdTipoReceita", nullable = false)
-    private TipoRendaModel tipoRenda;
+    @Column(name = "cdTipoReceita", nullable = false)
+    private TipoReceitaEnum tipoReceita;
 
     @Column(name = "dsReceita", nullable = false, length = 100)
     private String descricao;
@@ -44,15 +45,15 @@ public class ReceitaModel {
     public ReceitaModel() {
     }
 
-    public ReceitaModel(ContaBancaria contaBancaria, TipoRendaModel tipoRenda, String descricao,
-                   BigDecimal valor, LocalDate data, String repetir) {
-        this.contaBancaria = Objects.requireNonNull(contaBancaria, "Conta bancária não pode ser nula");
-        this.tipoRenda = Objects.requireNonNull(tipoRenda, "Tipo de renda não pode ser nulo");
-        this.descricao = Objects.requireNonNull(descricao, "Descrição não pode ser nula");
-        this.valor = Objects.requireNonNull(valor, "Valor não pode ser nulo");
-        this.data = Objects.requireNonNull(data, "Data não pode ser nula");
-        this.repetir = Objects.requireNonNull(repetir, "Repetir não pode ser nulo");
-        this.dataCriacao = LocalDate.now();
+    public ReceitaModel(ContaBancariaModel contaBancaria, TipoReceitaEnum tipoReceita, String descricao, BigDecimal valor, LocalDate data, String observacao, String repetir, LocalDate dataCriacao) {
+        this.contaBancaria = contaBancaria;
+        this.tipoReceita = tipoReceita;
+        this.descricao = descricao;
+        this.valor = valor;
+        this.data = data;
+        this.observacao = observacao;
+        this.repetir = repetir;
+        this.dataCriacao = dataCriacao;
     }
 
     // Getters
@@ -60,57 +61,72 @@ public class ReceitaModel {
         return id;
     }
 
-    public ContaBancaria getContaBancaria() {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public ContaBancariaModel getContaBancaria() {
         return contaBancaria;
     }
 
-    public TipoRendaModel getTipoRenda() {
-        return tipoRenda;
+    public void setContaBancaria(ContaBancariaModel contaBancaria) {
+        this.contaBancaria = contaBancaria;
+    }
+
+    public TipoReceitaEnum getTipoRenda() {
+        return tipoReceita;
+    }
+
+    public void setTipoRenda(TipoReceitaEnum tipoReceita) {
+        this.tipoReceita = tipoReceita;
     }
 
     public String getDescricao() {
         return descricao;
     }
 
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
     public BigDecimal getValor() {
         return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
     }
 
     public LocalDate getData() {
         return data;
     }
 
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
     public String getObservacao() {
         return observacao;
-    }
-
-    public String getRepetir() {
-        return repetir;
-    }
-
-    public LocalDate getDataCriacao() {
-        return dataCriacao;
-    }
-
-    // Setters
-    public void setDescricao(String descricao) {
-        this.descricao = Objects.requireNonNull(descricao);
-    }
-
-    public void setValor(BigDecimal valor) {
-        this.valor = Objects.requireNonNull(valor);
-    }
-
-    public void setData(LocalDate data) {
-        this.data = Objects.requireNonNull(data);
     }
 
     public void setObservacao(String observacao) {
         this.observacao = observacao;
     }
 
+    public String getRepetir() {
+        return repetir;
+    }
+
     public void setRepetir(String repetir) {
-        this.repetir = Objects.requireNonNull(repetir);
+        this.repetir = repetir;
+    }
+
+    public LocalDate getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(LocalDate dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
 
     @Override
@@ -134,5 +150,5 @@ public class ReceitaModel {
                 ", valor=" + valor +
                 ", data=" + data +
                 '}';
-    }*/
+    }
 }

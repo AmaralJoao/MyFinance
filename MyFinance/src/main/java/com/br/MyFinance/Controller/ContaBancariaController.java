@@ -21,22 +21,18 @@ public class ContaBancariaController {
     @Autowired
     private ContaBancariaService contaBancariaService;
 
-    @PostMapping("/salvarconta")
-    public ResponseEntity<Void> salvarConta(@RequestBody @Valid ContaBancariaRequestDto contaBancariaRequestDto){
+    @PostMapping
+    public ResponseEntity<Void> criarConta(@RequestBody @Valid ContaBancariaRequestDto contaBancariaRequestDto) {
         ContaBancariaModel contaSalva = contaBancariaService.criarContaBancaria(contaBancariaRequestDto);
-
-        if (contaBancariaRequestDto.isEdicao()){
-            return ResponseEntity.ok().build();
-        }else {
-            return ResponseEntity.created(URI.create("/api/contaBancaria/" + contaSalva.getId())).build();
-        }
+        return ResponseEntity.created(URI.create("/api/contaBancaria/" + contaSalva.getId())).build();
     }
 
-    @PutMapping("/{(id)}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Void> atualizarCOntas(@PathVariable Long id, @RequestBody @Valid ContaBancariaRequestDto contaBancariaRequestDto) throws IllegalAccessException {
-        if (!id.equals(contaBancariaRequestDto.getCdContaBancaria())){
-            throw new IllegalAccessException("ID do path não corresponde ao ID do DTO");
+    public ResponseEntity<Void> atualizarConta(@PathVariable Long id,
+                                               @RequestBody @Valid ContaBancariaRequestDto contaBancariaRequestDto) {
+        if (!id.equals(contaBancariaRequestDto.getCdContaBancaria())) {
+            throw new IllegalArgumentException("ID do path não corresponde ao ID do DTO");
         }
 
         contaBancariaService.editarContaBancaria(contaBancariaRequestDto);

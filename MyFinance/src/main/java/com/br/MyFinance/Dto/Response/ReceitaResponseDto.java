@@ -27,39 +27,7 @@ public class ReceitaResponseDto {
 
     private String repetir;
 
-    public ReceitaResponseDto() {
-    }
 
-    public ReceitaResponseDto(Long contaBancariaId, TipoReceitaEnum tipoRenda, String descricao, BigDecimal valor, LocalDate data, String observacao, String repetir) {
-        this.contaBancariaId = contaBancariaId;
-        this.tipoRenda = tipoRenda;
-        this.descricao = descricao;
-        this.valor = valor;
-        this.data = data;
-        this.observacao = observacao;
-        this.repetir = repetir;
-    }
-
-    public ReceitaResponseDto(TipoReceitaEnum tipoRenda, String descricao, BigDecimal valor, LocalDate data, String observacao, String repetir) {
-        this.tipoRenda = tipoRenda;
-        this.descricao = descricao;
-        this.valor = valor;
-        this.data = data;
-        this.observacao = observacao;
-        this.repetir = repetir;
-    }
-
-    public ReceitaResponseDto(ReceitaModel receitaModel) {
-        this.contaBancariaId = receitaModel.getId();
-        this.tipoRenda = receitaModel.getTipoRenda();
-        this.descricao = receitaModel.getDescricao();
-        this.valor = receitaModel.getValor();
-        this.data = receitaModel.getData();
-        this.observacao = receitaModel.getObservacao();
-        this.repetir = receitaModel.getRepetir();
-    }
-
-    // Getters e Setters
     public Long getContaBancariaId() {
         return contaBancariaId;
     }

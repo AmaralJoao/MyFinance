@@ -21,14 +21,6 @@ public class ContaBancariaRequestDto {
     @NotNull(message = "O ID do usuário é obrigatório.")
     private Long cdUsuario;
 
-    public boolean isEdicao(){
-        return cdContaBancaria != null;
-    }
-
-    public ContaBancariaModel toModel(UsuarioModel usuario, BancoModel banco) {
-        return new ContaBancariaModel(this.nome, this.tipoConta, usuario, banco);
-    }
-
     public Long getCdContaBancaria() {
         return cdContaBancaria;
     }

@@ -23,33 +23,25 @@ public class ContaBancariaController {
 
     @PostMapping
     public ResponseEntity<Void> criarConta(@RequestBody @Valid ContaBancariaRequestDto contaBancariaRequestDto) {
-        ContaBancariaModel contaSalva = contaBancariaService.criarContaBancaria(contaBancariaRequestDto);
-        return ResponseEntity.created(URI.create("/api/contaBancaria/" + contaSalva.getId())).build();
+       return null;
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Void> atualizarConta(@PathVariable Long id,
                                                @RequestBody @Valid ContaBancariaRequestDto contaBancariaRequestDto) {
-        if (!id.equals(contaBancariaRequestDto.getCdContaBancaria())) {
-            throw new IllegalArgumentException("ID do path não corresponde ao ID do DTO");
-        }
-
-        contaBancariaService.editarContaBancaria(contaBancariaRequestDto);
-        return ResponseEntity.ok().build();
+        return null;
     }
 
 
     @GetMapping("/listar")
     public ResponseEntity<List<ContaBancariaResponseDto>> listarContasBancariasPorUsuario(@PathVariable long cdUsuario){
 
-        List<ContaBancariaResponseDto> contaBancaria = contaBancariaService.listarContasDoUsuario(cdUsuario);
-
-        return ResponseEntity.ok(contaBancaria);
+        return null;
     }
 
     public void editarContaBancaria(@RequestBody @Valid ContaBancariaRequestDto contaBancariaRequestDto){
 
-        contaBancariaService.editarContaBancaria(contaBancariaRequestDto);
+
     }
 }

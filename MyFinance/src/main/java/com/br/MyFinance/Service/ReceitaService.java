@@ -14,18 +14,19 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class ReceitaService {
 
     @Autowired
     private ReceitaRepository receitaRepository;
 
+    public ReceitaResponseDto criarNovaReceita(ReceitaRequestDto receitaRequestDto){
+
+    }
 
     public List<ReceitaResponseDto> listarReceitaPorUsuario(@Valid long cdUsuario){
 
-        return receitaRepository.findBycdUsuario(cdUsuario)
-                .orElse(List.of()).stream()
-                .map(ReceitaResponseDto::new)
-                .collect(Collectors.toList());
+        return null;
 
     }
 }

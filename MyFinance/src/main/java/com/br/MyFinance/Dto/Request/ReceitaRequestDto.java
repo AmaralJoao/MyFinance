@@ -37,26 +37,6 @@ public class ReceitaRequestDto {
     public ReceitaRequestDto() {
     }
 
-    public ReceitaRequestDto(Long contaBancariaId, TipoReceitaEnum tipoRenda, String descricao, BigDecimal valor, LocalDate data, String observacao, String repetir) {
-        this.contaBancariaId = contaBancariaId;
-        this.tipoRenda = tipoRenda;
-        this.descricao = descricao;
-        this.valor = valor;
-        this.data = data;
-        this.observacao = observacao;
-        this.repetir = repetir;
-    }
-
-    public ReceitaRequestDto(TipoReceitaEnum tipoRenda, String descricao, BigDecimal valor, LocalDate data, String observacao, String repetir) {
-        this.tipoRenda = tipoRenda;
-        this.descricao = descricao;
-        this.valor = valor;
-        this.data = data;
-        this.observacao = observacao;
-        this.repetir = repetir;
-    }
-
-    // Getters e Setters
     public Long getContaBancariaId() {
         return contaBancariaId;
     }

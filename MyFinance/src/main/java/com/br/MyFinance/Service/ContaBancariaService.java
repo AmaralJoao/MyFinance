@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class ContaBancariaService {
 
     @Autowired
@@ -27,48 +28,21 @@ public class ContaBancariaService {
     @Autowired
     private BancoRepository bancoRepository;
 
-    @Transactional
+
     public List<ContaBancariaResponseDto> listarContasDoUsuario(@Valid long cdUsuario) {
 
-        return contaBancariaRepository.findBycdUsuario(cdUsuario)
-                .orElse(List.of())
-                .stream()
-                .map(ContaBancariaResponseDto::new).collect(Collectors.toList());
-
+       return null;
     }
 
     public ContaBancariaModel criarContaBancaria(@Valid ContaBancariaRequestDto contaBancariaRequestDto) {
 
-        UsuarioModel usuario = usuarioRepository.findById(contaBancariaRequestDto.getCdUsuario())
-                .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado com ID: " + contaBancariaRequestDto.getCdUsuario()));
-
-        // Banco é opcional
-        BancoModel banco = null;
-        if (contaBancariaRequestDto.getCdBanco() != null) {
-            banco = bancoRepository.findById(contaBancariaRequestDto.getCdBanco())
-                    .orElseThrow(() -> new IllegalArgumentException("Banco não encontrado com ID: " + contaBancariaRequestDto.getCdBanco()));
-        }
-
-        // Cria a conta usando o método no DTO
-        ContaBancariaModel conta = contaBancariaRequestDto.toModel(usuario, banco);
-
-        contaBancariaRepository.save(conta);
-        return conta;
+        return null;
     }
 
 
-    @Transactional
-    public void editarContaBancaria(@Valid ContaBancariaRequestDto contaBancariaRequestDto) {
-        ContaBancariaModel contaExistente = contaBancariaRepository.findById(contaBancariaRequestDto.getCdContaBancaria())
-                .orElseThrow(() -> new EntityNotFoundException("Conta bancária não encontrada"));
 
-        UsuarioModel usuario = validarEObterUsuario(contaBancariaRequestDto.getCdUsuario());
-        BancoModel banco = obterBancoSeExistir(contaBancariaRequestDto.getCdBanco());
-
-        contaExistente.atualizarDados(contaBancariaRequestDto.getNome(),
-                contaBancariaRequestDto.getTipoConta(),
-                usuario,
-                banco);
+    public ContaBancariaResponseDto editarContaBancaria(@Valid ContaBancariaRequestDto contaBancariaRequestDto) {
+        return null;
     }
 
     private UsuarioModel validarEObterUsuario(Long usuarioId) {

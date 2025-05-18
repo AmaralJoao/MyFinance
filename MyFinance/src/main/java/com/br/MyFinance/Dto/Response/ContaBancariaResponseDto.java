@@ -12,18 +12,6 @@ public class ContaBancariaResponseDto {
 
     private long cdBanco;
 
-    public ContaBancariaResponseDto(ContaBancariaModel contaBancaria) {
-
-        this.nomeDaConta = contaBancaria.getNome();
-        this.tipoConta = contaBancaria.getTipoConta();
-        this.cdBanco = (contaBancaria.getBanco() != null) ? contaBancaria.getBanco().getId() : null;
-
-    }
-
-    public ContaBancariaResponseDto() {
-    }
-
-
     public String getNomeDaConta() {
         return nomeDaConta;
     }

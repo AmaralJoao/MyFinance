@@ -22,7 +22,7 @@ public class JwtTokenProvider {
         Date expiracao = new Date(agora.getTime() + expirationInMs);
 
         return Jwts.builder()
-                .setSubject(usuario.getCdUsuario().toString())
+                .setSubject(usuario.getId().toString())
                 .claim("usuario", usuario.getUsuario())
                 .claim("email", usuario.getEmail())
                 .setIssuedAt(agora)

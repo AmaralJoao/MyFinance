@@ -41,7 +41,7 @@ public class ReceitaService {
     @Transactional(readOnly = true)
     public List<ReceitaResponseDto> listarReceitaPorUsuario(@Valid long cdUsuario){
 
-        List<ReceitaModel> receitas = receitaRepository.findBycdUsuario(cdUsuario);
+        List<ReceitaModel> receitas = receitaRepository.findByUsuarioId(cdUsuario);
 
         if (receitas.isEmpty()) {
             throw new RuntimeException("Usuário não possui nenhuma receita cadastrada");

@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "usuario")
@@ -13,7 +12,7 @@ public class UsuarioModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cdUsuario")
-    private Long cdUsuario;
+    private Long id;
 
     @Column(name = "nmUsuario", nullable = false)
     private String nomeDoUsuario;
@@ -37,8 +36,8 @@ public class UsuarioModel {
     public UsuarioModel() {
     }
 
-    public UsuarioModel(Long cdUsuario, String nomeDoUsuario, String email, String usuario, String senha, LocalDate dataDeNascimento) {
-        this.cdUsuario = cdUsuario;
+    public UsuarioModel(Long id, String nomeDoUsuario, String email, String usuario, String senha, LocalDate dataDeNascimento) {
+        this.id = id;
         this.nomeDoUsuario = nomeDoUsuario;
         this.email = email;
         this.usuario = usuario;
@@ -46,20 +45,28 @@ public class UsuarioModel {
         this.dataDeNascimento = dataDeNascimento;
     }
 
-    public LocalDate getDataDeNascimento() {
-        return dataDeNascimento;
+    public Long getId() {
+        return id;
     }
 
-    public void setDataDeNascimento(LocalDate dataDeNascimento) {
-        this.dataDeNascimento = dataDeNascimento;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getNomeDoUsuario() {
+        return nomeDoUsuario;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setNomeDoUsuario(String nomeDoUsuario) {
+        this.nomeDoUsuario = nomeDoUsuario;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUsuario() {
@@ -70,23 +77,27 @@ public class UsuarioModel {
         this.usuario = usuario;
     }
 
-    public Long getCdUsuario() {
-        return cdUsuario;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setCdUsuario(Long cdUsuario) {
-        this.cdUsuario = cdUsuario;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
-    public LocalDate getDataCriacao() {return dataCriacao;}
+    public LocalDate getDataDeNascimento() {
+        return dataDeNascimento;
+    }
 
-    public void setDataCriacao(LocalDate dataCriacao) {this.dataCriacao = dataCriacao;}
+    public void setDataDeNascimento(LocalDate dataDeNascimento) {
+        this.dataDeNascimento = dataDeNascimento;
+    }
 
-    public String getNomeDoUsuario() {return nomeDoUsuario;}
+    public LocalDate getDataCriacao() {
+        return dataCriacao;
+    }
 
-    public void setNomeDoUsuario(String nomeDoUsuario) {this.nomeDoUsuario = nomeDoUsuario;}
-
-    public String getEmail() {return email;}
-
-    public void setEmail(String email) {this.email = email;}
+    public void setDataCriacao(LocalDate dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
 }

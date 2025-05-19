@@ -55,7 +55,7 @@ public class UsuarioService {
         String token = jwtTokenProvider.gerarToken(usuario);
 
         return new UsuarioResponseDto(
-                usuario.getCdUsuario().toString(),
+                usuario.getId().toString(),
                 usuario.getUsuario(),
                 usuario.getEmail(),
                 token

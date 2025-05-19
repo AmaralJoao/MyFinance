@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ReceitaRepository extends JpaRepository<ReceitaModel, Long> {
-    Optional<List<ReceitaModel>> findBycdUsuario(Long cdUsuario);
+    List<ReceitaModel> findBycdUsuario(Long cdUsuario);
 }

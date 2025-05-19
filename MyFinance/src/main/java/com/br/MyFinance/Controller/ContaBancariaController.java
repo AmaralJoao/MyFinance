@@ -15,33 +15,30 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/contaBancaria")
+@RequestMapping("/api/contaBancaria")
 public class ContaBancariaController {
 
     @Autowired
     private ContaBancariaService contaBancariaService;
 
-    @PostMapping
-    public ResponseEntity<Void> criarConta(@RequestBody @Valid ContaBancariaRequestDto contaBancariaRequestDto) {
-       return null;
+    @PostMapping("criar")
+    public ResponseEntity<ContaBancariaResponseDto> criarConta(@RequestBody @Valid ContaBancariaRequestDto contaBancariaRequestDto) {
+       ContaBancariaResponseDto novaConta = contaBancariaService.criarContaBancaria(contaBancariaRequestDto);
+       return ResponseEntity.ok(novaConta);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Void> atualizarConta(@PathVariable Long id,
-                                               @RequestBody @Valid ContaBancariaRequestDto contaBancariaRequestDto) {
-        return null;
+    public ResponseEntity<ContaBancariaResponseDto> atualizarConta(@RequestBody @Valid ContaBancariaRequestDto contaBancariaRequestDto) {
+        ContaBancariaResponseDto atualizarConta = contaBancariaService.editarContaBancaria(contaBancariaRequestDto);
+        return ResponseEntity.ok(atualizarConta);
     }
 
 
     @GetMapping("/listar")
     public ResponseEntity<List<ContaBancariaResponseDto>> listarContasBancariasPorUsuario(@PathVariable long cdUsuario){
 
-        return null;
-    }
-
-    public void editarContaBancaria(@RequestBody @Valid ContaBancariaRequestDto contaBancariaRequestDto){
-
-
+        List<ContaBancariaResponseDto> contas = contaBancariaService.listarContasDoUsuario(cdUsuario);
+        return ResponseEntity.ok(contas);
     }
 }

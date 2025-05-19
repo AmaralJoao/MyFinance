@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ContaBancariaRepository extends JpaRepository<ContaBancariaModel, Long> {
-    Optional<List<ContaBancariaModel>>findBycdUsuario(long cdUsuario);
+    Optional<List<ContaBancariaModel>>findByCdUsuarioConta(long cdUsuario);
 
     boolean existsByIdAndUsuarioId(Long contaId, Long usuarioId);
 }

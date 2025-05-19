@@ -35,7 +35,7 @@ public class ContaBancariaService {
     @Transactional(readOnly = true)
     public List<ContaBancariaResponseDto> listarContasDoUsuario(@Valid long cdUsuario) {
 
-        List<ContaBancariaModel> contasUsuario = contaBancariaRepository.findBycdUsuario(cdUsuario)
+        List<ContaBancariaModel> contasUsuario = contaBancariaRepository.findByCdUsuarioConta(cdUsuario)
                 .orElseThrow(() -> new IllegalArgumentException("usuario não possui conta"));
 
        return contasUsuario.stream().map(contaBancariaMapper::toDto).collect(Collectors.toList());

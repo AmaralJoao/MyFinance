@@ -18,10 +18,10 @@ public class ReceitaController {
     @Autowired
     private ReceitaService receitaService;
 
-    @PostMapping("/novareceita")
-    public ResponseEntity<Void> criarReceita(@RequestBody @Valid ReceitaRequestDto receitaRequestDto){
-
-        return null;
+    @PostMapping("/nova")
+    public ResponseEntity<ReceitaResponseDto> criarReceita(@RequestBody @Valid ReceitaRequestDto receitaRequestDto){
+        ReceitaResponseDto novaReceita = receitaService.criarNovaReceita(receitaRequestDto);
+        return ResponseEntity.ok(novaReceita);
     }
 
     @GetMapping("/listar")
@@ -30,9 +30,9 @@ public class ReceitaController {
         return ResponseEntity.ok(receitaResponseDto);
     }
 
-    @PutMapping("/editarreceita")
-    public ResponseEntity<Void> editarReceita(@RequestBody @Valid ReceitaRequestDto receitaRequestDto){
-
-        return null;
+    @PutMapping("/editar")
+    public ResponseEntity<ReceitaResponseDto> editarReceita(@RequestBody @Valid ReceitaRequestDto receitaRequestDto){
+        ReceitaResponseDto editarReceita = receitaService.editarReceita(receitaRequestDto);
+        return ResponseEntity.ok(editarReceita);
     }
 }

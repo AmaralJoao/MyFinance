@@ -26,8 +26,7 @@ public class DespesaModel {
     @Column(name = "dataDespesa", nullable = false)
     private LocalDate data;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cdTipoDespesa", nullable = false)
+    @Column(name = "cdTipoDespesa", nullable = false)
     private TipoDespesaEnum tipoDespesa;
 
     @ManyToOne(fetch = FetchType.LAZY)

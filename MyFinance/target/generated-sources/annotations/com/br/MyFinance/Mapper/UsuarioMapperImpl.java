@@ -7,7 +7,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-05-19T18:24:37-0300",
+    date = "2025-05-20T21:16:37-0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 22.0.2 (Oracle Corporation)"
 )
 public class UsuarioMapperImpl implements UsuarioMapper {
@@ -20,11 +20,11 @@ public class UsuarioMapperImpl implements UsuarioMapper {
 
         UsuarioModel usuarioModel = new UsuarioModel();
 
-        usuarioModel.setDataDeNascimento( dto.getDataDeNascimento() );
-        usuarioModel.setSenha( dto.getSenha() );
-        usuarioModel.setUsuario( dto.getUsuario() );
         usuarioModel.setNomeDoUsuario( dto.getNomeDoUsuario() );
         usuarioModel.setEmail( dto.getEmail() );
+        usuarioModel.setUsuario( dto.getUsuario() );
+        usuarioModel.setSenha( dto.getSenha() );
+        usuarioModel.setDataDeNascimento( dto.getDataDeNascimento() );
 
         return usuarioModel;
     }
@@ -55,10 +55,10 @@ public class UsuarioMapperImpl implements UsuarioMapper {
             return;
         }
 
-        model.setDataDeNascimento( dto.getDataDeNascimento() );
-        model.setSenha( dto.getSenha() );
-        model.setUsuario( dto.getUsuario() );
         model.setNomeDoUsuario( dto.getNomeDoUsuario() );
         model.setEmail( dto.getEmail() );
+        model.setUsuario( dto.getUsuario() );
+        model.setSenha( dto.getSenha() );
+        model.setDataDeNascimento( dto.getDataDeNascimento() );
     }
 }

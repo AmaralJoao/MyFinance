@@ -38,4 +38,5 @@ public class GlobalExceptionHandler {
                 "detalhe", ex.getMessage()
         ));
     }
+
 }

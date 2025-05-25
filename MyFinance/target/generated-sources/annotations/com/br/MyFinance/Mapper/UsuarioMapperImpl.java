@@ -7,8 +7,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-05-20T21:16:37-0300",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 22.0.2 (Oracle Corporation)"
+    date = "2025-05-21T17:23:08-0300",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 24.0.1 (Oracle Corporation)"
 )
 public class UsuarioMapperImpl implements UsuarioMapper {
 
@@ -20,12 +20,6 @@ public class UsuarioMapperImpl implements UsuarioMapper {
 
         UsuarioModel usuarioModel = new UsuarioModel();
 
-        usuarioModel.setNomeDoUsuario( dto.getNomeDoUsuario() );
-        usuarioModel.setEmail( dto.getEmail() );
-        usuarioModel.setUsuario( dto.getUsuario() );
-        usuarioModel.setSenha( dto.getSenha() );
-        usuarioModel.setDataDeNascimento( dto.getDataDeNascimento() );
-
         return usuarioModel;
     }
 
@@ -35,13 +29,9 @@ public class UsuarioMapperImpl implements UsuarioMapper {
             return null;
         }
 
+        String usuarioId = null;
         String usuario = null;
         String email = null;
-
-        usuario = model.getUsuario();
-        email = model.getEmail();
-
-        String usuarioId = null;
         String token = null;
 
         UsuarioResponseDto usuarioResponseDto = new UsuarioResponseDto( usuarioId, usuario, email, token );
@@ -54,11 +44,5 @@ public class UsuarioMapperImpl implements UsuarioMapper {
         if ( dto == null ) {
             return;
         }
-
-        model.setNomeDoUsuario( dto.getNomeDoUsuario() );
-        model.setEmail( dto.getEmail() );
-        model.setUsuario( dto.getUsuario() );
-        model.setSenha( dto.getSenha() );
-        model.setDataDeNascimento( dto.getDataDeNascimento() );
     }
 }

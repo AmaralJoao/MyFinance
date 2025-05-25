@@ -30,8 +30,11 @@ public class ReceitaModel {
     @Column(name = "valorRenda", nullable = false)
     private BigDecimal valor;
 
-    @Column(name = "dataRenda", nullable = false)
-    private LocalDate data;
+    @Column(name = "dataVencimentoRenda", nullable = false)
+    private LocalDate dataDoVencimento;
+
+    @Column(name = "dataPagamentoRenda", nullable = false)
+    private LocalDate dataDoPagamento;
 
     @Column(name = "observacaoRenda", length = 255)
     private String observacao;
@@ -45,18 +48,19 @@ public class ReceitaModel {
     public ReceitaModel() {
     }
 
-    public ReceitaModel(ContaBancariaModel contaBancaria, TipoReceitaEnum tipoReceita, String descricao, BigDecimal valor, LocalDate data, String observacao, String repetir, LocalDate dataCriacao) {
+    public ReceitaModel(Long id, ContaBancariaModel contaBancaria, TipoReceitaEnum tipoReceita, String descricao, BigDecimal valor, LocalDate dataDoVencimento, LocalDate dataDoPagamento, String observacao, String repetir, LocalDate dataCriacao) {
+        this.id = id;
         this.contaBancaria = contaBancaria;
         this.tipoReceita = tipoReceita;
         this.descricao = descricao;
         this.valor = valor;
-        this.data = data;
+        this.dataDoVencimento = dataDoVencimento;
+        this.dataDoPagamento = dataDoPagamento;
         this.observacao = observacao;
         this.repetir = repetir;
         this.dataCriacao = dataCriacao;
     }
 
-    // Getters
     public Long getId() {
         return id;
     }
@@ -73,11 +77,11 @@ public class ReceitaModel {
         this.contaBancaria = contaBancaria;
     }
 
-    public TipoReceitaEnum getTipoRenda() {
+    public TipoReceitaEnum getTipoReceita() {
         return tipoReceita;
     }
 
-    public void setTipoRenda(TipoReceitaEnum tipoReceita) {
+    public void setTipoReceita(TipoReceitaEnum tipoReceita) {
         this.tipoReceita = tipoReceita;
     }
 
@@ -97,12 +101,20 @@ public class ReceitaModel {
         this.valor = valor;
     }
 
-    public LocalDate getData() {
-        return data;
+    public LocalDate getDataDoVencimento() {
+        return dataDoVencimento;
     }
 
-    public void setData(LocalDate data) {
-        this.data = data;
+    public void setDataDoVencimento(LocalDate dataDoVencimento) {
+        this.dataDoVencimento = dataDoVencimento;
+    }
+
+    public LocalDate getDataDoPagamento() {
+        return dataDoPagamento;
+    }
+
+    public void setDataDoPagamento(LocalDate dataDoPagamento) {
+        this.dataDoPagamento = dataDoPagamento;
     }
 
     public String getObservacao() {
@@ -127,28 +139,5 @@ public class ReceitaModel {
 
     public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ReceitaModel receita = (ReceitaModel) o;
-        return Objects.equals(id, receita.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return "Receita{" +
-                "id=" + id +
-                ", descricao='" + descricao + '\'' +
-                ", valor=" + valor +
-                ", data=" + data +
-                '}';
     }
 }

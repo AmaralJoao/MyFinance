@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-05-20T21:16:37-0300",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 22.0.2 (Oracle Corporation)"
+    date = "2025-05-22T18:04:58-0300",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 24.0.1 (Oracle Corporation)"
 )
 @Component
 public class DespesaMapperImpl implements DespesaMapper {
@@ -22,8 +22,8 @@ public class DespesaMapperImpl implements DespesaMapper {
 
         DespesaModel despesaModel = new DespesaModel();
 
+        despesaModel.setDescricao( dto.getDescricao() );
         despesaModel.setValor( dto.getValor() );
-        despesaModel.setData( dto.getData() );
         if ( dto.getRepetir() != null ) {
             despesaModel.setRepetir( Boolean.parseBoolean( dto.getRepetir() ) );
         }
@@ -55,11 +55,11 @@ public class DespesaMapperImpl implements DespesaMapper {
             return;
         }
 
+        if ( dto.getDescricao() != null ) {
+            model.setDescricao( dto.getDescricao() );
+        }
         if ( dto.getValor() != null ) {
             model.setValor( dto.getValor() );
-        }
-        if ( dto.getData() != null ) {
-            model.setData( dto.getData() );
         }
         if ( dto.getRepetir() != null ) {
             model.setRepetir( Boolean.parseBoolean( dto.getRepetir() ) );

@@ -1,6 +1,7 @@
 package com.br.MyFinance.Dto.Request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -11,20 +12,25 @@ import java.util.Date;
 public class UsuarioRequestDto {
 
     @NotBlank(message = "Nome é obrigatorio!")
+    @JsonProperty("nomeCompleto")
     private String nomeDoUsuario;
 
     @NotBlank(message = "nome de usuario é obrigatorio!")
+    @JsonProperty("login")
     private String usuario;
 
     @Email
     @NotBlank(message = "Email é obrigatorio!")
+    @JsonProperty("email")
     private String email;
 
     @NotBlank(message = "Senha deve conter 8 ou mais caracteres!")
+    @JsonProperty("senha")
     private String senha;
 
     @NotNull(message = "Data de nascimento é obrigatorio")
     @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonProperty("dataDeNascimento")
     private LocalDate dataDeNascimento;
 
     public String getNomeDoUsuario() {

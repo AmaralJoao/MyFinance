@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-05-20T21:16:36-0300",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 22.0.2 (Oracle Corporation)"
+    date = "2025-05-22T18:04:58-0300",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 24.0.1 (Oracle Corporation)"
 )
 @Component
 public class ReceitaMapperImpl implements ReceitaMapper {
@@ -22,10 +22,8 @@ public class ReceitaMapperImpl implements ReceitaMapper {
 
         ReceitaModel receitaModel = new ReceitaModel();
 
-        receitaModel.setTipoRenda( dto.getTipoRenda() );
         receitaModel.setDescricao( dto.getDescricao() );
         receitaModel.setValor( dto.getValor() );
-        receitaModel.setData( dto.getData() );
         receitaModel.setObservacao( dto.getObservacao() );
         receitaModel.setRepetir( dto.getRepetir() );
 
@@ -40,10 +38,8 @@ public class ReceitaMapperImpl implements ReceitaMapper {
 
         ReceitaResponseDto receitaResponseDto = new ReceitaResponseDto();
 
-        receitaResponseDto.setTipoRenda( model.getTipoRenda() );
         receitaResponseDto.setDescricao( model.getDescricao() );
         receitaResponseDto.setValor( model.getValor() );
-        receitaResponseDto.setData( model.getData() );
         receitaResponseDto.setObservacao( model.getObservacao() );
         receitaResponseDto.setRepetir( model.getRepetir() );
 
@@ -56,17 +52,11 @@ public class ReceitaMapperImpl implements ReceitaMapper {
             return;
         }
 
-        if ( dto.getTipoRenda() != null ) {
-            model.setTipoRenda( dto.getTipoRenda() );
-        }
         if ( dto.getDescricao() != null ) {
             model.setDescricao( dto.getDescricao() );
         }
         if ( dto.getValor() != null ) {
             model.setValor( dto.getValor() );
-        }
-        if ( dto.getData() != null ) {
-            model.setData( dto.getData() );
         }
         if ( dto.getObservacao() != null ) {
             model.setObservacao( dto.getObservacao() );

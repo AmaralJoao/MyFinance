@@ -1,33 +1,53 @@
 package com.br.MyFinance.Config;
 
-import com.br.MyFinance.Model.UsuarioModel;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.br.MyFinance.Dto.Response.TokenResponseDto;
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import java.util.Base64;
 import java.util.Date;
+import java.util.List;
 
-@Component
+@Service
 public class JwtTokenProvider {
 
     @Value("${jwt.secret}")
     private String secret;
 
     @Value("${jwt.expiration}")
-    private long expirationInMs;
+    private long validityInMilliseconds;
 
-    public String gerarToken(UsuarioModel usuario) {
-        Date agora = new Date();
-        Date expiracao = new Date(agora.getTime() + expirationInMs);
+    @Autowired
+    private UserDetailsService userDetailsService;
 
-        return Jwts.builder()
-                .setSubject(usuario.getId().toString())
-                .claim("usuario", usuario.getUsuario())
-                .claim("email", usuario.getEmail())
-                .setIssuedAt(agora)
-                .setExpiration(expiracao)
-                .signWith(SignatureAlgorithm.HS512, secret.getBytes())
-                .compact();
+    Algorithm algorithm = null;
+
+    @PostConstruct
+    protected void init(){
+        secret = Base64.getEncoder().encodeToString(secret.getBytes());
+        algorithm = Algorithm.HMAC256(secret.getBytes());
+
+    }
+
+    public TokenResponseDto criarTokenDeAcesso(String nomeDeUsuario, List<String> permissoes){
+
+        Date now = new Date();
+        Date validity = new Date(now.getTime() + validityInMilliseconds);
+        String acessToken = getTokenDeAcesso(nomeDeUsuario, permissoes, now, validity);
+        String refreshToken = getAtualizarToken(nomeDeUsuario, permissoes, now);
+        return new TokenResponseDto(nomeDeUsuario, true, now, validity, acessToken, refreshToken);
+    }
+
+    private String getAtualizarToken(String nomeDeUsuario, List<String> permissoes, Date now) {
+        return "";
+    }
+
+    private String getTokenDeAcesso(String nomeDeUsuario, List<String> permissoes, Date now, Date validity) {
+        return "";
     }
 }

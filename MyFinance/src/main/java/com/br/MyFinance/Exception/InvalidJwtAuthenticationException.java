@@ -8,4 +8,6 @@ import javax.security.sasl.AuthenticationException;
 @ResponseStatus(HttpStatus.FORBIDDEN)
 public class InvalidJwtAuthenticationException extends AuthenticationException {
 
+    public InvalidJwtAuthenticationException(String invalidJwtToken) {
+    }
 }

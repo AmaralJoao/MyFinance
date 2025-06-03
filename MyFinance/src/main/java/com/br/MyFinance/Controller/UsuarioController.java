@@ -18,14 +18,14 @@ public class UsuarioController {
     @PostMapping("/registrar")
     public ResponseEntity<UsuarioResponseDto> cadastrar(@RequestBody @Validated UsuarioRequestDto usuarioResquest){
 
-        UsuarioResponseDto usuarioResponse = usuarioService.cadastrar(usuarioResquest);
+        //UsuarioResponseDto usuarioResponse = usuarioService.cadastrar(usuarioResquest);
 
-        return ResponseEntity.status(201).body(usuarioResponse);
+        return null;//ResponseEntity.status(201).body(usuarioResponse);
     }
 
     @PostMapping("/logar")
     public ResponseEntity<UsuarioResponseDto> logar(@RequestBody @Validated UsuarioRequestDto usuarioRequestDto) {
-        UsuarioResponseDto usuarioLogado = usuarioService.logar(usuarioRequestDto);
-        return ResponseEntity.ok(usuarioLogado);
+        //UsuarioResponseDto usuarioLogado = usuarioService.logar(usuarioRequestDto);
+        return null; //ResponseEntity.ok(usuarioLogado);
     }
 }

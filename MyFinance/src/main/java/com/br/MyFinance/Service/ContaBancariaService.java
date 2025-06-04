@@ -5,7 +5,7 @@ import com.br.MyFinance.Dto.Response.ContaBancariaResponseDto;
 import com.br.MyFinance.Mapper.ContaBancariaMapper;
 import com.br.MyFinance.Model.BancoModel;
 import com.br.MyFinance.Model.ContaBancariaModel;
-import com.br.MyFinance.Model.UsuarioModel;
+import com.br.MyFinance.Model.DadosUsuarioModel;
 import com.br.MyFinance.Repository.BancoRepository;
 import com.br.MyFinance.Repository.ContaBancariaRepository;
 import com.br.MyFinance.Repository.UsuarioRepository;
@@ -49,7 +49,7 @@ public class ContaBancariaService {
 
         validarDadosDaConta(contaBancariaRequestDto);
 
-        UsuarioModel cdUsuario = obterUsuario(contaBancariaRequestDto.getCdUsuario());
+        DadosUsuarioModel cdUsuario = obterUsuario(contaBancariaRequestDto.getCdUsuario());
         BancoModel banco = obterBancoSeExistir(contaBancariaRequestDto.getCdBanco());
 
         ContaBancariaModel novaContaBancaria = contaBancariaMapper.requestToModel(contaBancariaRequestDto);
@@ -73,7 +73,7 @@ public class ContaBancariaService {
 
         validarDadosDaConta(contaBancariaRequestDto);
 
-        UsuarioModel cdUsuario = obterUsuario(contaBancariaRequestDto.getCdUsuario());
+        DadosUsuarioModel cdUsuario = obterUsuario(contaBancariaRequestDto.getCdUsuario());
         BancoModel banco = obterBancoSeExistir(contaBancariaRequestDto.getCdBanco());
 
         contaBancariaMapper.updateModelFromDto(contaBancariaRequestDto, contaExistente);
@@ -100,12 +100,14 @@ public class ContaBancariaService {
 
     }
 
-    private UsuarioModel obterUsuario(Long usuarioId) {
-        if (usuarioId == null) {
+    private DadosUsuarioModel obterUsuario(Long usuarioId) {
+       /* if (usuarioId == null) {
             throw new IllegalArgumentException("ID do usuário não pode ser nulo");
         }
         return usuarioRepository.findById(usuarioId)
-                .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
+                .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));*/
+
+        return null;
     }
 
     private BancoModel obterBancoSeExistir(Long bancoId) {

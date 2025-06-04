@@ -2,7 +2,7 @@ package com.br.MyFinance.Dto.Request;
 
 import com.br.MyFinance.Model.BancoModel;
 import com.br.MyFinance.Model.ContaBancariaModel;
-import com.br.MyFinance.Model.UsuarioModel;
+import com.br.MyFinance.Model.DadosUsuarioModel;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

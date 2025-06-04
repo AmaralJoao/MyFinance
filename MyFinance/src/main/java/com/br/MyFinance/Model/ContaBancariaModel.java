@@ -21,7 +21,7 @@ public class ContaBancariaModel {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cdUsuarioConta", nullable = false)
-    private UsuarioModel usuario;
+    private DadosUsuarioModel usuario;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cdBanco")
@@ -30,18 +30,18 @@ public class ContaBancariaModel {
     public ContaBancariaModel() {
     }
 
-    public ContaBancariaModel(String nome, Integer tipoConta, UsuarioModel usuario) {
+    public ContaBancariaModel(String nome, Integer tipoConta, DadosUsuarioModel usuario) {
         this.nome = Objects.requireNonNull(nome, "Nome da conta não pode ser nulo");
         this.tipoConta = Objects.requireNonNull(tipoConta, "Tipo da conta não pode ser nulo");
         this.usuario = Objects.requireNonNull(usuario, "Usuário não pode ser nulo");
     }
 
-    public ContaBancariaModel(String nome, Integer tipoConta, UsuarioModel usuario, BancoModel banco) {
+    public ContaBancariaModel(String nome, Integer tipoConta, DadosUsuarioModel usuario, BancoModel banco) {
         this(nome, tipoConta, usuario);
         this.banco = banco;
     }
 
-    public void atualizarDados(String nome, Integer tipoConta, UsuarioModel usuario, BancoModel banco) {
+    public void atualizarDados(String nome, Integer tipoConta, DadosUsuarioModel usuario, BancoModel banco) {
         this.nome = nome;
         this.tipoConta = tipoConta;
         this.usuario = usuario;
@@ -61,7 +61,7 @@ public class ContaBancariaModel {
         return tipoConta;
     }
 
-    public UsuarioModel getUsuario() {
+    public DadosUsuarioModel getUsuario() {
         return usuario;
     }
 
@@ -84,7 +84,7 @@ public class ContaBancariaModel {
 
     public void setId(Long id) {this.id = id;}
 
-    public void setUsuario(UsuarioModel usuario) {this.usuario = usuario;}
+    public void setUsuario(DadosUsuarioModel usuario) {this.usuario = usuario;}
 
     @Override
     public boolean equals(Object o) {

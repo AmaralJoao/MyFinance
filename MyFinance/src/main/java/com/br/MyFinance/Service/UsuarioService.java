@@ -4,7 +4,7 @@ import com.br.MyFinance.Config.JwtTokenProvider;
 import com.br.MyFinance.Dto.Request.UsuarioRequestDto;
 import com.br.MyFinance.Dto.Response.UsuarioResponseDto;
 import com.br.MyFinance.Exception.EmailJaExistenteException;
-import com.br.MyFinance.Model.UsuarioModel;
+import com.br.MyFinance.Model.DadosUsuarioModel;
 import com.br.MyFinance.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;

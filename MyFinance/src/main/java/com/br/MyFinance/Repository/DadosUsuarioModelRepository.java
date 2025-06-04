@@ -1,7 +1,7 @@
 package com.br.MyFinance.Repository;
 
 import com.br.MyFinance.Model.DadosUsuarioModel;
-import com.br.MyFinance.Model.UsuarioModel;
+import com.br.MyFinance.Model.DadosUsuarioModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

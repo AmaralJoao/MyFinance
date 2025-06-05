@@ -33,20 +33,20 @@ public class UsersModel implements UserDetails {
     private boolean credentialsNonExpired;
 
     @Column
-    private boolean enable;
+    private boolean enabled;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_permission", joinColumns = {@JoinColumn (name = "id_user")}, inverseJoinColumns = {@JoinColumn (name = "id_permission")})
     private List<PermissionModel> permissions;
 
-    public UsersModel(long id, String nomeDeUsuario, String senha, boolean accountNonExpired, boolean accountNonLocked, boolean credentialsNonExpired, boolean enable, List<PermissionModel> permissions) {
+    public UsersModel(long id, String nomeDeUsuario, String senha, boolean accountNonExpired, boolean accountNonLocked, boolean credentialsNonExpired, boolean enabled, List<PermissionModel> permissions) {
         this.id = id;
         this.nomeDeUsuario = nomeDeUsuario;
         this.senha = senha;
         this.accountNonExpired = accountNonExpired;
         this.accountNonLocked = accountNonLocked;
         this.credentialsNonExpired = credentialsNonExpired;
-        this.enable = enable;
+        this.enabled = enabled;
         this.permissions = permissions;
     }
 
@@ -93,7 +93,7 @@ public class UsersModel implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return this.enable;
+        return this.enabled;
     }
 
     public long getId() {
@@ -133,11 +133,11 @@ public class UsersModel implements UserDetails {
     }
 
     public boolean isEnable() {
-        return enable;
+        return enabled;
     }
 
-    public void setEnable(boolean enable) {
-        this.enable = enable;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public List<PermissionModel> getPermissions() {

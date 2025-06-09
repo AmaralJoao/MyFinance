@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,9 +21,9 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping("/signin")
-    public ResponseEntity<?> signIn(AccountCredenctialRequestDto credential){
+    public ResponseEntity<?> signIn(@RequestBody AccountCredenctialRequestDto credential){
         if (credentialsIsNull(credential)){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Usuario ou senha não pode ser null");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Controller Usuario ou senha não pode ser null");
         }
         var token = authService.signIn(credential);
         if (token == null) ResponseEntity.status(HttpStatus.FORBIDDEN).body("requisição invalida");

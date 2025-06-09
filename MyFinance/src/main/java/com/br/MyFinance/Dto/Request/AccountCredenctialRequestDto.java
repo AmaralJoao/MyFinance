@@ -2,18 +2,18 @@ package com.br.MyFinance.Dto.Request;
 
 public class AccountCredenctialRequestDto {
 
-    private String nomeDeusuario;
+    private String nomeDeUsuario;
     private String senha;
 
     public AccountCredenctialRequestDto() {
     }
 
-    public String getNomeDeusuario() {
-        return nomeDeusuario;
+    public String getnomeDeUsuario() {
+        return nomeDeUsuario;
     }
 
-    public void setNomeDeusuario(String nomeDeusuario) {
-        this.nomeDeusuario = nomeDeusuario;
+    public void setnomeDeUsuario(String nomeDeUsuario) {
+        this.nomeDeUsuario = nomeDeUsuario;
     }
 
     public String getSenha() {

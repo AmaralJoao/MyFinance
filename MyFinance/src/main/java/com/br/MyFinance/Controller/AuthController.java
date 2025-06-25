@@ -31,6 +31,6 @@ public class AuthController {
     }
 
     private static boolean credentialsIsNull(AccountCredenctialRequestDto credential) {
-        return credential == null || StringUtils.isBlank(credential.getNomeDeusuario()) || StringUtils.isBlank(credential.getSenha());
+        return credential == null || StringUtils.isBlank(credential.getnomeDeUsuario()) || StringUtils.isBlank(credential.getSenha());
     }
 }

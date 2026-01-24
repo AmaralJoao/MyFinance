@@ -11,7 +11,7 @@ public class BancoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigoBanco")
-    private Long id;
+    private Long cdBanco;
 
     @Column(name = "nomeDoBanco", length = 100)
     private String nome;
@@ -24,8 +24,8 @@ public class BancoModel {
     }
 
     // Getters
-    public Long getId() {
-        return id;
+    public Long getCdBanco() {
+        return cdBanco;
     }
 
     public String getNome() {
@@ -42,18 +42,18 @@ public class BancoModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BancoModel banco = (BancoModel) o;
-        return Objects.equals(id, banco.id);
+        return Objects.equals(cdBanco, banco.cdBanco);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(cdBanco);
     }
 
     @Override
     public String toString() {
         return "Banco{" +
-                "id=" + id +
+                "id=" + cdBanco +
                 ", nome='" + nome + '\'' +
                 '}';
     }

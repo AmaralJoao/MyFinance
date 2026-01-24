@@ -8,7 +8,7 @@ public class LoginModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cdLogin")
-    private long id;
+    private Long id;
 
     @Column(name = "login", unique = true)
     private String login;

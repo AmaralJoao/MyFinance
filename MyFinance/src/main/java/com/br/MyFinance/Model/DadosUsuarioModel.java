@@ -12,7 +12,7 @@ public class DadosUsuarioModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cdDadosUsuario")
-    private Integer cdDadosUsuario;
+    private Long cdDadosUsuario;
 
     @Column(name = "nmUsuario", nullable = false)
     private String nomeCompletoDoUsuario;
@@ -40,7 +40,7 @@ public class DadosUsuarioModel {
     public DadosUsuarioModel() {
     }
 
-    public DadosUsuarioModel(Integer cdDadosUsuario, String nomeCompletoDoUsuario, String email, int dddUsuario, long telefoneUsuario, LocalDate dataDeNascimento, LocalDate dataCriacao) {
+    public DadosUsuarioModel(Long cdDadosUsuario, String nomeCompletoDoUsuario, String email, int dddUsuario, long telefoneUsuario, LocalDate dataDeNascimento, LocalDate dataCriacao) {
         this.cdDadosUsuario = cdDadosUsuario;
         this.nomeCompletoDoUsuario = nomeCompletoDoUsuario;
         this.email = email;
@@ -50,7 +50,7 @@ public class DadosUsuarioModel {
         this.dataCriacao = dataCriacao;
     }
 
-    public DadosUsuarioModel(Integer cdDadosUsuario, String nomeCompletoDoUsuario, LoginModel login, String email, int dddUsuario, long telefoneUsuario, LocalDate dataDeNascimento, LocalDate dataCriacao) {
+    public DadosUsuarioModel(Long cdDadosUsuario, String nomeCompletoDoUsuario, LoginModel login, String email, int dddUsuario, long telefoneUsuario, LocalDate dataDeNascimento, LocalDate dataCriacao) {
         this.cdDadosUsuario = cdDadosUsuario;
         this.nomeCompletoDoUsuario = nomeCompletoDoUsuario;
         this.login = login;
@@ -61,11 +61,11 @@ public class DadosUsuarioModel {
         this.dataCriacao = dataCriacao;
     }
 
-    public Integer getCdDadosusuario() {
+    public Long getCdDadosusuario() {
         return cdDadosUsuario;
     }
 
-    public void setCdDadosusuario(Integer cdDadosusuario) {
+    public void setCdDadosusuario(Long cdDadosusuario) {
         this.cdDadosUsuario = cdDadosusuario;
     }
 

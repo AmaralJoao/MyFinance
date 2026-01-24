@@ -11,7 +11,7 @@ public class ContaBancariaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cdContaBancaria")
-    private Integer cdContaBancaria;
+    private Long cdContaBancaria;
 
     @Column(name = "nmContaBancaria", nullable = false, length = 50)
     private String nmContaBancaria;
@@ -48,11 +48,11 @@ public class ContaBancariaModel {
         this.banco = banco;
     }
 
-    public Integer getCdContaBancaria() {
+    public Long getCdContaBancaria() {
         return cdContaBancaria;
     }
 
-    public void setCdContaBancaria(Integer cdContaBancaria) {
+    public void setCdContaBancaria(Long cdContaBancaria) {
         this.cdContaBancaria = cdContaBancaria;
     }
 

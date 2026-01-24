@@ -1,7 +1,5 @@
 package com.br.MyFinance.Service;
 
-import com.br.MyFinance.Dto.Request.ContaBancariaRequestDto;
-import com.br.MyFinance.Dto.Response.ContaBancariaResponseDto;
 import com.br.MyFinance.Mapper.ContaBancariaMapper;
 import com.br.MyFinance.Model.BancoModel;
 import com.br.MyFinance.Model.ContaBancariaModel;
@@ -15,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -47,7 +44,7 @@ public class ContaBancariaService extends BaseService<ContaBancariaModel, Intege
         }
 
         DadosUsuarioModel cdDadosUsuario = obterUsuario(contaBancariaModel.getUsuario().getCdDadosusuario());
-        BancoModel banco = obterBancoSeExistir(contaBancariaModel.getBanco().getId());
+        BancoModel banco = obterBancoSeExistir(contaBancariaModel.getBanco().getCdBanco());
         contaBancariaModel.setUsuario(cdDadosUsuario);
         contaBancariaModel.setBanco(banco);
 
@@ -57,13 +54,13 @@ public class ContaBancariaService extends BaseService<ContaBancariaModel, Intege
 
 
 
-    public ContaBancariaResponseDto editarContaBancaria(@Valid ContaBancariaModel contaBancariaRequestDto) {
+    public ContaBancariaModel editarContaBancaria(@Valid ContaBancariaModel contaBancariaModel) {
 
-        if (contaBancariaRequestDto.getCdContaBancaria() == null){
-            throw new IllegalArgumentException("Favor infermar aconta para aditar");
+        if (contaBancariaModel.getCdContaBancaria() == null){
+            throw new IllegalArgumentException("Favor informar a conta para aditar");
         }
 
-        ContaBancariaModel contaExistente = contaBancariaRepository.findById(contaBancariaRequestDto.getCdContaBancaria())
+        ContaBancariaModel contaExistente = contaBancariaRepository.findById(contaBancariaModel.getCdContaBancaria())
                 .orElseThrow(() -> new IllegalArgumentException("Conta bancária não encontrada"));
 
         validarDadosDaConta(contaBancariaRequestDto);
@@ -96,7 +93,7 @@ public class ContaBancariaService extends BaseService<ContaBancariaModel, Intege
 
     }
 
-    private DadosUsuarioModel obterUsuario(Integer usuarioId) {
+    private DadosUsuarioModel obterUsuario(Long usuarioId) {
        /* if (usuarioId == null) {
             throw new IllegalArgumentException("ID do usuário não pode ser nulo");
         }

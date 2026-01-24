@@ -1,10 +1,11 @@
 package com.br.MyFinance.Service;
 
 import com.br.MyFinance.Dto.Request.ReceitaRequestDto;
-import com.br.MyFinance.Dto.Response.ContaBancariaResponseDto;
 import com.br.MyFinance.Dto.Response.ReceitaResponseDto;
+import com.br.MyFinance.Mapper.BaseMapper;
 import com.br.MyFinance.Mapper.ReceitaMapper;
 import com.br.MyFinance.Model.ReceitaModel;
+import com.br.MyFinance.Repository.BaseRepository;
 import com.br.MyFinance.Repository.ReceitaRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,19 +14,23 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class ReceitaService {
+public class ReceitaService extends BaseService<ReceitaRequestDto,ReceitaResponseDto,ReceitaModel,Long>{
 
     @Autowired
     private ReceitaRepository receitaRepository;
     @Autowired
     private ReceitaMapper receitaMapper;
 
-    public ReceitaResponseDto criarNovaReceita(ReceitaRequestDto receitaRequestDto){
+    public ReceitaService(BaseRepository<ReceitaModel, Long> repository, BaseMapper<ReceitaRequestDto, ReceitaResponseDto, ReceitaModel> mapper) {
+        super(repository, mapper);
+    }
+
+
+   /* public ReceitaResponseDto criarNovaReceita(ReceitaRequestDto receitaRequestDto){
 
         if (receitaRequestDto == null){
             throw new RuntimeException("Receita não pode ser vazia");
@@ -36,7 +41,7 @@ public class ReceitaService {
 
         ReceitaModel salvarReceita = receitaRepository.save(receitaModel);
         return receitaMapper.toDto(salvarReceita);
-    }
+    }*/
 
     @Transactional(readOnly = true)
     public List<ReceitaResponseDto> listarReceitaPorUsuario(@Valid long cdUsuario){

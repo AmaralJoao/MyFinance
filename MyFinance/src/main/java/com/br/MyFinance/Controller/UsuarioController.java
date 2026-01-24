@@ -9,23 +9,18 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/api/usuario")
-public class UsuarioController {
+@RequestMapping(value = "/api/auth/usuario")
+public class UsuarioController extends BaseController{
 
     @Autowired
     private UsuarioService usuarioService;
 
     @PostMapping("/registrar")
-    public ResponseEntity<UsuarioResponseDto> cadastrar(@RequestBody @Validated UsuarioRequestDto usuarioResquest){
+    public ResponseEntity<?> cadastrar(@RequestBody @Validated UsuarioRequestDto usuarioResquest){
 
-        //UsuarioResponseDto usuarioResponse = usuarioService.cadastrar(usuarioResquest);
 
-        return null;//ResponseEntity.status(201).body(usuarioResponse);
-    }
+        usuarioService.cadastrarUsuario(usuarioResquest);
 
-    @PostMapping("/logar")
-    public ResponseEntity<UsuarioResponseDto> logar(@RequestBody @Validated UsuarioRequestDto usuarioRequestDto) {
-        //UsuarioResponseDto usuarioLogado = usuarioService.logar(usuarioRequestDto);
-        return null; //ResponseEntity.ok(usuarioLogado);
+        return ResponseEntity.ok(200);
     }
 }

@@ -1,44 +1,38 @@
 package com.br.MyFinance.Service;
 
-import com.br.MyFinance.Config.JwtTokenFilter;
-import com.br.MyFinance.Config.JwtTokenProvider;
-import com.br.MyFinance.Dto.Request.AccountCredenctialRequestDto;
-import com.br.MyFinance.Dto.Response.TokenResponseDto;
-import com.br.MyFinance.Repository.UsuarioRepository;
+import com.br.MyFinance.Dto.Request.LoginRequestDto;
+import com.br.MyFinance.Dto.Response.LoginResponseDto;
+import com.br.MyFinance.Mapper.BaseMapper;
+import com.br.MyFinance.Model.LoginModel;
+import com.br.MyFinance.Repository.BaseRepository;
+import com.br.MyFinance.Repository.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthService {
-
+public class AuthService extends BaseService<LoginModel,Long>{
     @Autowired
-    private AuthenticationManager authenticationManager;
+    private LoginRepository loginRepository;
     @Autowired
-    private JwtTokenProvider jwtTokenProvider;
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    private TokenService tokenService;
 
-    public ResponseEntity<TokenResponseDto> signIn(AccountCredenctialRequestDto credentials){
-
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                credentials.getnomeDeUsuario(),
-                credentials.getSenha()
-        ));
-
-        var user = usuarioRepository.findByNomeDeUsuario(credentials.getnomeDeUsuario());
-
-        if (user == null) {
-            throw new UsernameNotFoundException("Nome de usuario não localizado");
-        }
-
-        var tokenResponse = jwtTokenProvider.criarTokenDeAcesso(credentials.getnomeDeUsuario(), user.getRoles());
-
-        return ResponseEntity.ok(tokenResponse);
+    public AuthService(BaseRepository<LoginModel, Long> repository) {
+        super(repository);
     }
 
+    public String validarLogin(LoginModel login) {
+        LoginModel usuario = loginRepository.findByLogin(login.getLogin())
+                .orElseThrow(() -> new RuntimeException("Usuário ou senha inválidos"));
+
+        if (!getEncoder().matches(login.getSenha(), usuario.getSenha())) {
+            throw new RuntimeException("Usuário ou senha inválidos");
+        }
+
+        return tokenService.gerarToken(usuario);
+    }
+
+    public String novoLogin(LoginModel loginModel){
+        LoginModel novo = loginRepository.save(loginModel);
+        return tokenService.gerarToken(novo);
+    }
 }

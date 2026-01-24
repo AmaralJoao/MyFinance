@@ -11,15 +11,15 @@ public class DadosUsuarioModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cdUsuario")
-    private Long id;
-
-    @OneToOne
-    @JoinColumn(name = "login", nullable = false)
-    private UsersModel usuario;
+    @Column(name = "cdDadosUsuario")
+    private Integer cdDadosUsuario;
 
     @Column(name = "nmUsuario", nullable = false)
     private String nomeCompletoDoUsuario;
+
+    @JoinColumn(name = "login")
+    @OneToOne
+    private LoginModel login;
 
     @Column(name = "email", nullable = false)
     private String email;
@@ -40,9 +40,8 @@ public class DadosUsuarioModel {
     public DadosUsuarioModel() {
     }
 
-    public DadosUsuarioModel(Long id, UsersModel usuario, String nomeCompletoDoUsuario, String email, int dddUsuario, long telefoneUsuario, LocalDate dataDeNascimento, LocalDate dataCriacao) {
-        this.id = id;
-        this.usuario = usuario;
+    public DadosUsuarioModel(Integer cdDadosUsuario, String nomeCompletoDoUsuario, String email, int dddUsuario, long telefoneUsuario, LocalDate dataDeNascimento, LocalDate dataCriacao) {
+        this.cdDadosUsuario = cdDadosUsuario;
         this.nomeCompletoDoUsuario = nomeCompletoDoUsuario;
         this.email = email;
         this.dddUsuario = dddUsuario;
@@ -51,20 +50,23 @@ public class DadosUsuarioModel {
         this.dataCriacao = dataCriacao;
     }
 
-    public Long getId() {
-        return id;
+    public DadosUsuarioModel(Integer cdDadosUsuario, String nomeCompletoDoUsuario, LoginModel login, String email, int dddUsuario, long telefoneUsuario, LocalDate dataDeNascimento, LocalDate dataCriacao) {
+        this.cdDadosUsuario = cdDadosUsuario;
+        this.nomeCompletoDoUsuario = nomeCompletoDoUsuario;
+        this.login = login;
+        this.email = email;
+        this.dddUsuario = dddUsuario;
+        this.telefoneUsuario = telefoneUsuario;
+        this.dataDeNascimento = dataDeNascimento;
+        this.dataCriacao = dataCriacao;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Integer getCdDadosusuario() {
+        return cdDadosUsuario;
     }
 
-    public UsersModel getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(UsersModel usuario) {
-        this.usuario = usuario;
+    public void setCdDadosusuario(Integer cdDadosusuario) {
+        this.cdDadosUsuario = cdDadosusuario;
     }
 
     public String getNomeCompletoDoUsuario() {
@@ -113,5 +115,13 @@ public class DadosUsuarioModel {
 
     public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
+    }
+
+    public LoginModel getLogin() {
+        return login;
+    }
+
+    public void setLogin(LoginModel login) {
+        this.login = login;
     }
 }

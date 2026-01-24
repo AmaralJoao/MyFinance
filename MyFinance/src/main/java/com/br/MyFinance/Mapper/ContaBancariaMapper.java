@@ -7,7 +7,7 @@ import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE,  nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-public interface ContaBancariaMapper {
+public interface ContaBancariaMapper  {
 
     ContaBancariaMapper INSTANCE = Mappers.getMapper(ContaBancariaMapper.class);
 

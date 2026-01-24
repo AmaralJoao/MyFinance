@@ -4,6 +4,8 @@ import com.br.MyFinance.Dto.Request.DespesaRequestDto;
 import com.br.MyFinance.Dto.Request.ReceitaRequestDto;
 import com.br.MyFinance.Dto.Response.DespesaResponseDto;
 import com.br.MyFinance.Dto.Response.ReceitaResponseDto;
+import com.br.MyFinance.Mapper.BaseMapper;
+import com.br.MyFinance.Model.DespesaModel;
 import com.br.MyFinance.Service.DespesaService;
 import com.br.MyFinance.Service.ReceitaService;
 import jakarta.validation.Valid;
@@ -15,14 +17,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/despesas")
-public class DespesaController {
+public class DespesaController extends BaseController<DespesaRequestDto,DespesaResponseDto, DespesaModel> {
 
     @Autowired
     private DespesaService despesaService;
 
+    public DespesaController(BaseMapper<DespesaRequestDto, DespesaResponseDto, DespesaModel> mapper) {
+        super(mapper);
+    }
+
     @PostMapping("/nova")
     public ResponseEntity<DespesaResponseDto> criarReceita(@RequestBody @Valid DespesaRequestDto despesaRequestDto){
-        DespesaResponseDto novaDespesa = despesaService.criarNovaReceita(despesaRequestDto);
+        DespesaResponseDto novaDespesa = despesaService.cadastrar(despesaRequestDto);
         return ResponseEntity.ok(novaDespesa);
     }
 

@@ -7,62 +7,57 @@ import com.br.MyFinance.Model.BancoModel;
 import com.br.MyFinance.Model.ContaBancariaModel;
 import com.br.MyFinance.Model.DadosUsuarioModel;
 import com.br.MyFinance.Repository.BancoRepository;
+import com.br.MyFinance.Repository.BaseRepository;
 import com.br.MyFinance.Repository.ContaBancariaRepository;
-import com.br.MyFinance.Repository.UsuarioRepository;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class ContaBancariaService {
+public class ContaBancariaService extends BaseService<ContaBancariaModel, Integer>{
 
     @Autowired
     private ContaBancariaRepository contaBancariaRepository;
-    @Autowired
-    private UsuarioRepository usuarioRepository;
     @Autowired
     private BancoRepository bancoRepository;
     @Autowired
     private ContaBancariaMapper contaBancariaMapper;
 
-    @Transactional(readOnly = true)
-    public List<ContaBancariaResponseDto> listarContasDoUsuario(@Valid long cdUsuario) {
-
-        List<ContaBancariaModel> contasUsuario = contaBancariaRepository.findByUsuarioId(cdUsuario)
-                .orElseThrow(() -> new IllegalArgumentException("usuario não possui conta"));
-
-       return contasUsuario.stream().map(contaBancariaMapper::toDto).collect(Collectors.toList());
+    public ContaBancariaService(BaseRepository<ContaBancariaModel, Integer> repository) {
+        super(repository);
     }
 
-    public ContaBancariaResponseDto criarContaBancaria(@Valid ContaBancariaRequestDto contaBancariaRequestDto) {
 
-        if (contaBancariaRequestDto.getCdContaBancaria() != null){
+    @Transactional(readOnly = true)
+    public List<ContaBancariaModel> listarContasDoUsuario(@Valid Integer cdDadosUsuario) {
+
+        return contaBancariaRepository.findByUsuarioId(cdDadosUsuario)
+                .orElseThrow(() -> new IllegalArgumentException("usuario não possui conta"));
+    }
+
+    public ContaBancariaModel criarContaBancaria(@Valid ContaBancariaModel contaBancariaModel) {
+
+        if (contaBancariaModel.getCdContaBancaria() != null){
             throw new IllegalArgumentException("Favor não inserir cdContaBancaria para criação de uma nova conta");
         }
 
-        validarDadosDaConta(contaBancariaRequestDto);
+        DadosUsuarioModel cdDadosUsuario = obterUsuario(contaBancariaModel.getUsuario().getCdDadosusuario());
+        BancoModel banco = obterBancoSeExistir(contaBancariaModel.getBanco().getId());
+        contaBancariaModel.setUsuario(cdDadosUsuario);
+        contaBancariaModel.setBanco(banco);
 
-        DadosUsuarioModel cdUsuario = obterUsuario(contaBancariaRequestDto.getCdUsuario());
-        BancoModel banco = obterBancoSeExistir(contaBancariaRequestDto.getCdBanco());
-
-        ContaBancariaModel novaContaBancaria = contaBancariaMapper.requestToModel(contaBancariaRequestDto);
-        novaContaBancaria.setUsuario(cdUsuario);
-        novaContaBancaria.setBanco(banco);
-
-        ContaBancariaModel salvarConta = contaBancariaRepository.save(novaContaBancaria);
-        return contaBancariaMapper.toDto(salvarConta);
+        validarDadosDaConta(contaBancariaModel);
+        return contaBancariaRepository.save(contaBancariaModel);
     }
 
 
 
-    public ContaBancariaResponseDto editarContaBancaria(@Valid ContaBancariaRequestDto contaBancariaRequestDto) {
+    public ContaBancariaResponseDto editarContaBancaria(@Valid ContaBancariaModel contaBancariaRequestDto) {
 
         if (contaBancariaRequestDto.getCdContaBancaria() == null){
             throw new IllegalArgumentException("Favor infermar aconta para aditar");
@@ -84,23 +79,24 @@ public class ContaBancariaService {
         return contaBancariaMapper.toDto(contaAtualizada);
     }
 
-    private void validarDadosDaConta(ContaBancariaRequestDto contaBancariaParaValidar){
+    private void validarDadosDaConta(ContaBancariaModel contaBancariaParaValidar){
 
-        if (contaBancariaParaValidar.getNome() == null || contaBancariaParaValidar.getNome().trim().isEmpty()) {
+        if (contaBancariaParaValidar.getNmContaBancaria() == null || contaBancariaParaValidar.getNmContaBancaria().trim().isEmpty()) {
             throw new IllegalArgumentException("Nome da conta é obrigatório");
         }
-
-        if (contaBancariaParaValidar.getTipoConta() == null) {
+        if (contaBancariaParaValidar.getIdTipoConta() == null) {
             throw new IllegalArgumentException("Tipo da conta é obrigatório");
         }
-
-        if (contaBancariaParaValidar.getCdUsuario() == null) {
+        if (contaBancariaParaValidar.getBanco() == null){
+            throw new IllegalArgumentException("Banco é obrigatório");
+        }
+        if (contaBancariaParaValidar.getUsuario().getCdDadosusuario() == null) {
             throw new IllegalArgumentException("Usuário é obrigatório");
         }
 
     }
 
-    private DadosUsuarioModel obterUsuario(Long usuarioId) {
+    private DadosUsuarioModel obterUsuario(Integer usuarioId) {
        /* if (usuarioId == null) {
             throw new IllegalArgumentException("ID do usuário não pode ser nulo");
         }

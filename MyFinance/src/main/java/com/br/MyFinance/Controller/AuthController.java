@@ -1,12 +1,12 @@
 package com.br.MyFinance.Controller;
 
-import com.br.MyFinance.Dto.Request.AccountCredenctialRequestDto;
-import com.br.MyFinance.Dto.Response.TokenResponseDto;
+import com.br.MyFinance.Dto.Request.LoginRequestDto;
+import com.br.MyFinance.Dto.Response.LoginResponseDto;
+import com.br.MyFinance.Mapper.BaseMapper;
+import com.br.MyFinance.Model.LoginModel;
 import com.br.MyFinance.Service.AuthService;
-import org.apache.commons.lang3.StringUtils;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,22 +15,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
-public class AuthController {
+public class AuthController extends BaseController<LoginRequestDto,LoginResponseDto,LoginModel>{
 
     @Autowired
     private AuthService authService;
 
-    @PostMapping("/signin")
-    public ResponseEntity<?> signIn(@RequestBody AccountCredenctialRequestDto credential){
-        if (credentialsIsNull(credential)){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Controller Usuario ou senha não pode ser null");
-        }
-        var token = authService.signIn(credential);
-        if (token == null) ResponseEntity.status(HttpStatus.FORBIDDEN).body("requisição invalida");
-        return ResponseEntity.ok().body(token);
+    public AuthController(BaseMapper<LoginRequestDto, LoginResponseDto, LoginModel> mapper) {
+        super(mapper);
     }
 
-    private static boolean credentialsIsNull(AccountCredenctialRequestDto credential) {
-        return credential == null || StringUtils.isBlank(credential.getnomeDeUsuario()) || StringUtils.isBlank(credential.getSenha());
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponseDto> login(@RequestBody @Valid LoginRequestDto dto) {
+        return ResponseEntity.ok(new LoginResponseDto(authService.validarLogin(super.requestToModel(dto))));
     }
+
+    @PostMapping("/cadastrar")
+    public ResponseEntity<LoginResponseDto> cadastra(@RequestBody @Valid LoginRequestDto dto) {
+        return ResponseEntity.ok(new LoginResponseDto(authService.novoLogin(super.requestToModel(dto))));
+    }
+
 }

@@ -2,6 +2,7 @@ package com.br.MyFinance.Controller;
 
 import com.br.MyFinance.Dto.Request.ContaBancariaRequestDto;
 import com.br.MyFinance.Dto.Response.ContaBancariaResponseDto;
+import com.br.MyFinance.Mapper.BaseMapper;
 import com.br.MyFinance.Model.ContaBancariaModel;
 import com.br.MyFinance.Service.ContaBancariaService;
 import jakarta.validation.Valid;
@@ -16,10 +17,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/contaBancaria")
-public class ContaBancariaController {
+public class ContaBancariaController extends BaseController<ContaBancariaRequestDto,ContaBancariaResponseDto,ContaBancariaModel>{
 
     @Autowired
     private ContaBancariaService contaBancariaService;
+
+    public ContaBancariaController(BaseMapper<ContaBancariaRequestDto, ContaBancariaResponseDto, ContaBancariaModel> mapper) {
+        super(mapper);
+    }
 
     @PostMapping("criar")
     public ResponseEntity<ContaBancariaResponseDto> criarConta(@RequestBody @Valid ContaBancariaRequestDto contaBancariaRequestDto) {

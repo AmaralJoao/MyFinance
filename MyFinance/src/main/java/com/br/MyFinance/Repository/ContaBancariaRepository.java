@@ -7,6 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ContaBancariaRepository extends JpaRepository<ContaBancariaModel, Long> {
-    Optional<List<ContaBancariaModel>> findByUsuarioId(Long usuarioId);
+    Optional<List<ContaBancariaModel>> findByUsuarioId(Integer usuarioId);
 
 }

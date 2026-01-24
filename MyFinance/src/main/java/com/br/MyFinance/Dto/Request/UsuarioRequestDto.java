@@ -2,6 +2,7 @@ package com.br.MyFinance.Dto.Request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -13,49 +14,23 @@ public class UsuarioRequestDto {
 
     @NotBlank(message = "Nome é obrigatorio!")
     @JsonProperty("nomeCompleto")
-    private String nomeDoUsuario;
-
-    @NotBlank(message = "nome de usuario é obrigatorio!")
-    @JsonProperty("login")
-    private String usuario;
+    private String nomeCompletoDoUsuario;
 
     @Email
     @NotBlank(message = "Email é obrigatorio!")
     @JsonProperty("email")
     private String email;
 
-    @NotBlank(message = "Senha deve conter 8 ou mais caracteres!")
-    @JsonProperty("senha")
-    private String senha;
-
     @NotNull(message = "Data de nascimento é obrigatorio")
     @JsonFormat(pattern = "yyyy-MM-dd")
     @JsonProperty("dataDeNascimento")
     private LocalDate dataDeNascimento;
 
-    public String getNomeDoUsuario() {
-        return nomeDoUsuario;
-    }
+    @NotNull(message = "DDD é obrigatorio")
+    private int dddUsuario;
 
-    public void setNomeDoUsuario(String nomeDeUsuario) {
-        this.nomeDoUsuario = nomeDeUsuario;
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+    @NotNull(message = "Telefone é obrigatorio")
+    private long telefoneUsuario;
 
     public String getEmail() {
         return email;
@@ -71,5 +46,29 @@ public class UsuarioRequestDto {
 
     public void setDataDeNascimento(LocalDate dataDeNascimento) {
         this.dataDeNascimento = dataDeNascimento;
+    }
+
+    public String getNomeCompletoDoUsuario() {
+        return nomeCompletoDoUsuario;
+    }
+
+    public void setNomeCompletoDoUsuario(String nomeCompletoDoUsuario) {
+        this.nomeCompletoDoUsuario = nomeCompletoDoUsuario;
+    }
+
+    public int getDddUsuario() {
+        return dddUsuario;
+    }
+
+    public void setDddUsuario(int dddUsuario) {
+        this.dddUsuario = dddUsuario;
+    }
+
+    public long getTelefoneUsuario() {
+        return telefoneUsuario;
+    }
+
+    public void setTelefoneUsuario(long telefoneUsuario) {
+        this.telefoneUsuario = telefoneUsuario;
     }
 }

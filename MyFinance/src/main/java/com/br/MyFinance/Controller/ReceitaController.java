@@ -13,14 +13,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/receitas")
-public class ReceitaController {
+public class ReceitaController extends BaseController{
 
     @Autowired
     private ReceitaService receitaService;
 
     @PostMapping("/nova")
     public ResponseEntity<ReceitaResponseDto> criarReceita(@RequestBody @Valid ReceitaRequestDto receitaRequestDto){
-        ReceitaResponseDto novaReceita = receitaService.criarNovaReceita(receitaRequestDto);
+        ReceitaResponseDto novaReceita = receitaService.cadastrar(receitaRequestDto);
         return ResponseEntity.ok(novaReceita);
     }
 
